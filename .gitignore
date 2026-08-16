@@ -1,0 +1,37 @@
+# Eclipse
+bin/
+.metadata/
+.settings/
+.classpath
+.project
+*.launch
+
+# IntelliJ IDEA
+.idea/
+out/
+*.ipr
+*.iws
+*.iml
+
+# Gradle
+.gradle/
+build/
+
+# Forge development/runtime
+run/
+
+# VS Code
+.vscode/
+
+# Compiled Java
+*.class
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Forge MDK
+forge*changelog.txt

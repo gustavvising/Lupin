@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+[[mods]]
+modId="xaerominimap"
+version="1.0"
+displayName="Lupin"
+credits="Alexander01998 - fancy chat, HaaasKN - design ideas, speedometermod - blocks per second, M1ntcraft3r - draw box in world, Tracer mod - Vector2f, Marco Acierno - read pastebin raw, Krypton - hwid util, forgehax - wallhack, (halalaboos, Brandon, Hexeption) - fontrenderer."
+description=""
