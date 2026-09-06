@@ -2,14 +2,11 @@ package me.timeswitcher.lupin.managers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import me.timeswitcher.lupin.mods.Aura;
 import me.timeswitcher.lupin.mods.Bobbing;
 import me.timeswitcher.lupin.mods.ChestStealer;
 import me.timeswitcher.lupin.mods.ClickTP;
-import me.timeswitcher.lupin.mods.Crasher;
-import me.timeswitcher.lupin.mods.Disabler;
 import me.timeswitcher.lupin.mods.LivingESP;
 import me.timeswitcher.lupin.main.Lupin;
 import me.timeswitcher.lupin.mod.Category;
@@ -66,7 +63,6 @@ public class ModHandler {
 		addModToModList(new TPAura("TP Aura"));
 		addModToModList(new AntiKB("Anti KB"));
 		addModToModList(new Wallhax("Wallhax"));
-		addModToModList(new Crasher("Crasher"));
 		addModToModList(new Bobbing("Bobbing"));
 		addModToModList(new Respawn("Respawn"));
 		addModToModList(new ClickTP("Click TP"));
@@ -74,7 +70,6 @@ public class ModHandler {
 		addModToModList(new ItemESP("Item ESP"));
 		addModToModList(new MassMSG("Mass MSG"));
 		addModToModList(new Nametags("Nametags"));
-		addModToModList(new Disabler("Disabler"));
 		addModToModList(new HighJump("High Jump"));
 		addModToModList(new LongJump("Long Jump"));
 		addModToModList(new ChestESP("Chest ESP"));
