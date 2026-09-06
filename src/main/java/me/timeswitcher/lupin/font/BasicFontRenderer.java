@@ -8,9 +8,7 @@ public class BasicFontRenderer implements FontRenderer {
 
     protected int kerning = 0;
 
-    public BasicFontRenderer() {
-
-    }
+    public BasicFontRenderer() {}
 
     @Override
     public int drawString(FontData fontData, String text, int x, int y, int color) {
@@ -60,7 +58,7 @@ public class BasicFontRenderer implements FontRenderer {
 
     @Override
     public FontData getFontData() {
-
         return fontData;
     }
+
 }

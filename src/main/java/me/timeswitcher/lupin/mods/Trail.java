@@ -14,7 +14,7 @@ public class Trail extends Mod {
 	private final Time TRAIL_TIMER = new Time();
 
 	public Trail(String name) {
-		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Draw particles behind the player when moving. For fun.");
+		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Draw particles behind the player when moving.");
 	}
 
 	@Override
@@ -45,4 +45,5 @@ public class Trail extends Mod {
 			}
 		}
 	}
+
 }

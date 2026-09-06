@@ -136,30 +136,19 @@ public class Mod {
 	}
 
 	public void toggleMod() {
-
 		if (this.isToggled()) {
-
 			this.onDisable();
 			this.setAnimation(0);
 			this.setToggled(false);
-
 		} else {
-
 			this.onEnable();
 			this.setAnimation(0);
 			this.setToggled(true);
 		} 
 	}
 
-	public void onEnable() {
+	public void onEnable() {}
+	public void onDisable() {}
+	public void onUpdate() {}
 
-	}
-
-	public void onDisable() {
-
-	}
-
-	public void onUpdate() {
-
-	}
 }

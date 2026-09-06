@@ -31,4 +31,5 @@ public class NoScoreboard extends Mod {
 			}
 		}
 	}
+
 }

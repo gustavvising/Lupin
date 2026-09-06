@@ -97,4 +97,5 @@ public class ModsUtil {
 			Lupin.instance.getAccessManager().applyTimerSpeedSRG(speed);
 		}
 	}
+
 }

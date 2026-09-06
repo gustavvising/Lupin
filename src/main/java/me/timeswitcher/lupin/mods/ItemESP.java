@@ -18,4 +18,5 @@ public class ItemESP extends Mod {
 		this.getSliders().add(NAMETAG_SIZE);
 		this.getCheckBoxes().add(NAMETAG);
 	}
+
 }

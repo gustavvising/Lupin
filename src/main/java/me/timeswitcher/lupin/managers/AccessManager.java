@@ -39,10 +39,10 @@ public class AccessManager {
 				Field timerSpeedField = timerClass.getDeclaredField("tickLength");
 				timerSpeedField.setAccessible(true);
 				timerSpeedField.setFloat(timer, tickLength);
-			} catch (IllegalAccessException e) {
+			} catch (IllegalAccessException ignored) {
 
 			}
-		} catch (NoSuchFieldException e) {
+		} catch (NoSuchFieldException ignored) {
 
 		}
 	}
@@ -58,10 +58,10 @@ public class AccessManager {
 				Field timerSpeedField = timerClass.getDeclaredField("field_194149_e");
 				timerSpeedField.setAccessible(true);
 				timerSpeedField.setFloat(timer, tickLength);
-			} catch (IllegalAccessException e) {
+			} catch (IllegalAccessException ignored) {
 
 			}
-		} catch (NoSuchFieldException e) {
+		} catch (NoSuchFieldException ignored) {
 
 		}
 	}

@@ -32,4 +32,5 @@ public class FastBreak extends Mod {
 			speed = 0.444f;
 		}
 	}
+
 }

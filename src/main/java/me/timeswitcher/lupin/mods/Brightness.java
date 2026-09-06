@@ -48,4 +48,5 @@ public class Brightness extends Mod {
 	public double getINCREASEDGAMMA() {
 		return INCREASEDGAMMA;
 	}
+
 }

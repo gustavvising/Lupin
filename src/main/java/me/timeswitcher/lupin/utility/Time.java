@@ -11,4 +11,5 @@ public class Time
 	public void reset() {
 		this.time = System.currentTimeMillis();
 	}
+
 }

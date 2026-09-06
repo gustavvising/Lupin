@@ -27,7 +27,7 @@ public class VClip extends Mod {
 	public static double down = 0;
 
 	public VClip(String name) {
-		super(name, Category.WORLD, GLFW.GLFW_KEY_U, "Allows you to teleport up and down. Very usefull for getting out of a cage. Tip, also see .vclip <distance>.");
+		super(name, Category.WORLD, GLFW.GLFW_KEY_U, "Allows you to teleport up and down. Tip, also see .vclip <distance>.");
 	}
 
 	@Override
@@ -168,4 +168,5 @@ public class VClip extends Mod {
 			}
 		}
 	}
+
 }

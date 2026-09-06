@@ -16,7 +16,7 @@ public class Twerk extends Mod {
 	private final Slider DELAY = new Slider("Twerk Delay", 50.0f, 1.0f, 100.0f, 500.0f, true);
 
 	public Twerk(String name) {
-		super(name, Category.PLAYER, GLFW.GLFW_KEY_UNKNOWN, "Sneaks and unsneaks. Twerking in minecraft.");
+		super(name, Category.PLAYER, GLFW.GLFW_KEY_UNKNOWN, "Shake it.");
 		this.getSliders().add(DELAY);
 	}
 
@@ -36,4 +36,5 @@ public class Twerk extends Mod {
 			}
 		}
 	}
+
 }

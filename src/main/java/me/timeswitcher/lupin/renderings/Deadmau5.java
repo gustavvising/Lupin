@@ -36,7 +36,7 @@ public class Deadmau5 extends LayerRenderer<AbstractClientPlayerEntity, PlayerMo
 				matrixStackIn.push();
 				matrixStackIn.rotate(Vector3f.YP.rotationDegrees(f));
 				matrixStackIn.rotate(Vector3f.XP.rotationDegrees(f1));
-				matrixStackIn.translate((double)(0.375F * (float)(j * 2 - 1)), 0.0D, 0.0D);
+				matrixStackIn.translate(0.375F * (float)(j * 2 - 1), 0.0D, 0.0D);
 				matrixStackIn.translate(0.0D, entitylivingbaseIn.isCrouching() ? -0.11114D : -0.375D, 0.0D);
 				matrixStackIn.rotate(Vector3f.XP.rotationDegrees(-f1));
 				matrixStackIn.rotate(Vector3f.YP.rotationDegrees(-f));
@@ -47,4 +47,5 @@ public class Deadmau5 extends LayerRenderer<AbstractClientPlayerEntity, PlayerMo
 			}
 		}
 	}
+
 }

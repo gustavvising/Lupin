@@ -196,4 +196,5 @@ public class LupinClickGuiModOptionScreen extends Screen {
 		GameUtil.resize();
 		Lupin.mc.displayGuiScreen(LupinUtil.getClickGui());
 	}
+
 }

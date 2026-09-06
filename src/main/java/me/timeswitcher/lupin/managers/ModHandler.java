@@ -46,7 +46,7 @@ import me.timeswitcher.lupin.mods.AntiKB;
 
 public class ModHandler {
 
-	private HashMap<String, Mod> modMap = new HashMap<String, Mod>();
+	private final HashMap<String, Mod> modMap = new HashMap<String, Mod>();
 
 	public ModHandler() {
 		initializeModList();
@@ -108,15 +108,13 @@ public class ModHandler {
 	public ArrayList<Mod> getEnabledMods() {
 		ArrayList<Mod> activeMods = new ArrayList<>();
 
-		for (Iterator<Mod> iterator = getModMap().values().iterator(); iterator.hasNext();) {
+        for (Mod mod : getModMap().values()) {
 
-			Mod mod = (Mod)iterator.next();
+            if (mod.isToggled() && !activeMods.contains(mod)) {
 
-			if (mod.isToggled() && !activeMods.contains(mod)) {
-
-				activeMods.add(mod);
-			}
-		}
+                activeMods.add(mod);
+            }
+        }
 		activeMods.sort((Mod c1, Mod c2) -> (-1 * ((Lupin.mc.fontRenderer.getStringWidth(c1.getNameAndMode()) - Lupin.mc.fontRenderer.getStringWidth(c2.getNameAndMode())))));
 		return activeMods;
 	}
@@ -130,28 +128,24 @@ public class ModHandler {
 	public ArrayList<Mod> getAllModsByCategory(Category category) {
 		ArrayList<Mod> modsByCategory = new ArrayList<Mod>();
 
-		for (Iterator<Mod> iterator = getModMap().values().iterator(); iterator.hasNext();) {
+        for (Mod mod : getModMap().values()) {
 
-			Mod mod = (Mod)iterator.next();
+            if (mod.getCategory() == category) {
 
-			if (mod.getCategory() == category) {
-
-				modsByCategory.add(mod);
-			}
-		}
+                modsByCategory.add(mod);
+            }
+        }
 		modsByCategory.sort((Mod c1, Mod c2) -> (-1 * ((Lupin.mc.fontRenderer.getStringWidth(c1.getName()) - Lupin.mc.fontRenderer.getStringWidth(c2.getName())))));
 		return modsByCategory;
 	}
 
 	public void runEnabledMods() {
-		for (Iterator<Mod> iterator = getEnabledMods().iterator(); iterator.hasNext();) {
+        for (Mod mod : getEnabledMods()) {
 
-			Mod mod = (Mod)iterator.next();
+            if (mod.isToggled()) {
 
-			if (mod.isToggled()) {
-
-				mod.onUpdate();
-			}
-		}
+                mod.onUpdate();
+            }
+        }
 	}
 }

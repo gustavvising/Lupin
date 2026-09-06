@@ -282,4 +282,5 @@ public class PlayerUtil {
 		yaw *= 0.0174653292;
 		return (float) yaw;
 	}
+
 }

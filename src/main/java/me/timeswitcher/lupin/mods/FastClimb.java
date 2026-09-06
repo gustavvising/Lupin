@@ -36,8 +36,6 @@ public class FastClimb extends Mod {
 
 					CLIMBDOWN_TIMER.reset();
 
-					//ModsUtil.setTimerSpeed(MathUtil.getRandomInt(48, 49));
-
 					PlayerUtil.setPos(PlayerUtil.posX(), PlayerUtil.posY() + speedTPUp,PlayerUtil.posZ());
 
 				} else {
@@ -45,8 +43,6 @@ public class FastClimb extends Mod {
 					if (CLIMBDOWN_TIMER.isDelayComplete(500f)) {
 
 						BlockPos pos = new BlockPos(PlayerUtil.posX(), PlayerUtil.posY() - speedTPDown, PlayerUtil.posZ());
-
-						//ModsUtil.setTimerSpeed(10f);
 
 						if (mc.world.getBlockState(new BlockPos(pos)).getBlock() == Blocks.VINE || mc.world.getBlockState(new BlockPos(pos)).getBlock() == Blocks.LADDER)
 
@@ -59,4 +55,5 @@ public class FastClimb extends Mod {
 			ModsUtil.resetTimerSpeed();
 		}
 	}
+
 }

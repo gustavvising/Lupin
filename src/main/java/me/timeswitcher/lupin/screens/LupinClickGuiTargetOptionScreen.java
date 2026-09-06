@@ -69,7 +69,6 @@ public class LupinClickGuiTargetOptionScreen extends Screen {
 
 			RenderSystem.scalef(1.5F, 1.5F, 1.5F);
 
-			//Lupin.instance.getFontManager().verdana.drawString("Target Options", (int) (x / 1.5F) - Lupin.instance.getFontManager().verdana.getStringWidth("Target Options") / 2, (int) (y / 1.5F) - 69, Color.WHITE.getRGB(), -1);
 			Lupin.mc.fontRenderer.drawStringWithShadow("Target Options", (x / 1.5F) - Lupin.mc.fontRenderer.getStringWidth("Target Options") / 2, (y / 1.5F) - 67, Color.WHITE.getRGB());
 
 			RenderSystem.scalef(1.0F, 1.0F, 1.0F);
@@ -94,7 +93,6 @@ public class LupinClickGuiTargetOptionScreen extends Screen {
 
 					String valueText = checkBox.getName() + (checkBox.isChecked() ? " \u00A77on" : " \u00A77off");
 
-					//Lupin.instance.getFontManager().verdana.drawString(valueText, (int) (checkBox.getX() + checkBox.getBoxWidth() / 2) - Lupin.instance.getFontManager().verdana.getStringWidth(valueText) / 2, (int) checkBox.getY() - 15, Color.WHITE.getRGB(), -1);
 					Lupin.mc.fontRenderer.drawString(valueText, (checkBox.getX() + checkBox.getBoxWidth() / 2) - Lupin.mc.fontRenderer.getStringWidth(valueText) / 2, checkBox.getY() - 15, Color.WHITE.getRGB());
 					RenderUtil.drawRect(checkBox.getX(), checkBox.getY(), checkBox.getX() + checkBox.getBoxWidth(), checkBox.getY() + checkBox.getBoxHeight(), COMPONENTBACKGROUNDCOLOR.getRGB());
 					if (checkBox.isChecked()) {
@@ -120,7 +118,7 @@ public class LupinClickGuiTargetOptionScreen extends Screen {
 			for (CheckBox checkBox : targetOptions) {
 
 				if (isCheckBoxHovered(checkBox, mouseX, mouseY)) {
-					checkBox.setChecked(checkBox.isChecked() ? false : true);
+					checkBox.setChecked(!checkBox.isChecked());
 				}
 			}
 		}
@@ -132,4 +130,5 @@ public class LupinClickGuiTargetOptionScreen extends Screen {
 		GameUtil.resize();
 		Lupin.mc.displayGuiScreen(LupinUtil.getClickGui());
 	}
+
 }

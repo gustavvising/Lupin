@@ -13,7 +13,6 @@ public class ClickTP extends Mod {
 	}
 	
 	@Override
-	public void onUpdate() {
-		
-	}
+	public void onUpdate() {}
+
 }

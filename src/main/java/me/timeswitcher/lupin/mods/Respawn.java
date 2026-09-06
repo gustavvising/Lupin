@@ -18,4 +18,5 @@ public class Respawn extends Mod {
 			mc.player.respawnPlayer();
 		}
 	}
+
 }

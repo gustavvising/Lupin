@@ -63,13 +63,11 @@ public class EntityUtil {
 	}
 
 	public static boolean isEntityValid(Entity entity) {
-		return entity.isLiving() && entity != null && !shouldNotTarget((LivingEntity) entity)
-				&& entity.canBeAttackedWithItem() && entity.ticksExisted > 20
-				&& entity != Lupin.mc.player
-				&& Lupin.mc.player.canEntityBeSeen(entity) && !entity.isInvisible() && entity.isAlive();
+		return entity.isLiving() && !shouldNotTarget((LivingEntity) entity) && entity.canBeAttackedWithItem() && entity.ticksExisted > 20 && entity != Lupin.mc.player && Lupin.mc.player.canEntityBeSeen(entity) && !entity.isInvisible() && entity.isAlive();
 	}
 
 	public static boolean isEntityValidESP(Entity entity) {
-		return entity.isLiving() && (LivingESP.ONLY_PLAYERS.isChecked() && entity instanceof PlayerEntity || !LivingESP.ONLY_PLAYERS.isChecked()) && !(entity instanceof ArmorStandEntity) && !(entity instanceof ClientPlayerEntity) && entity.isAlive();
+		return entity.isLiving() && (!LivingESP.ONLY_PLAYERS.isChecked() || entity instanceof PlayerEntity) && !(entity instanceof ArmorStandEntity) && !(entity instanceof ClientPlayerEntity) && entity.isAlive();
 	}
+
 }

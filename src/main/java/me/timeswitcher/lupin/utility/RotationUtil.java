@@ -17,25 +17,22 @@ public class RotationUtil {
 
 	public synchronized static void faceEntity(Entity entity) {
 		float[] rotations = getRotation(entity);
-		if (rotations != null)
-		{
-			if (packetYaw == 1337) {
-				packetYaw = Lupin.mc.player.rotationYaw;
-			}
-			if (packetPitch == 1337) {
-				packetPitch = Lupin.mc.player.rotationPitch;
-			}
-			float rotationSpeed = calcAngleDistance(entity);
-			packetYaw = limitAngleChange(packetYaw, rotations[0], rotationSpeed / 200);
-			packetPitch = rotations[1];
-			
-			Lupin.mc.player.rotationYaw = packetYaw;
-			Lupin.mc.player.rotationYawHead = packetYaw;
-			Lupin.mc.player.rotationPitch = packetPitch;
-			
-			PlayerUtil.sendPacket(new CPlayerPacket.RotationPacket(packetYaw, packetPitch, Lupin.mc.player.onGround));
-		}
-	}
+        if (packetYaw == 1337) {
+            packetYaw = Lupin.mc.player.rotationYaw;
+        }
+        if (packetPitch == 1337) {
+            packetPitch = Lupin.mc.player.rotationPitch;
+        }
+        float rotationSpeed = calcAngleDistance(entity);
+        packetYaw = limitAngleChange(packetYaw, rotations[0], rotationSpeed / 200);
+        packetPitch = rotations[1];
+
+        Lupin.mc.player.rotationYaw = packetYaw;
+        Lupin.mc.player.rotationYawHead = packetYaw;
+        Lupin.mc.player.rotationPitch = packetPitch;
+
+        PlayerUtil.sendPacket(new RotationPacket(packetYaw, packetPitch, Lupin.mc.player.onGround));
+    }
 
 	private final static float limitAngleChange(final float current, final float intended, final float maxChange)
 	{
@@ -98,4 +95,5 @@ public class RotationUtil {
 
 		return new float[] {Lupin.mc.player.rotationYaw + MathHelper.wrapDegrees((f - Lupin.mc.player.rotationYaw)), Lupin.mc.player.rotationPitch + MathHelper.wrapDegrees((f1 - Lupin.mc.player.rotationPitch))};
 	}
+
 }

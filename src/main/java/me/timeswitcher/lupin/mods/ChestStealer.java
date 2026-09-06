@@ -55,4 +55,5 @@ public class ChestStealer extends Mod {
 			CHEST_TIMER.reset();
 		}
 	}
+
 }

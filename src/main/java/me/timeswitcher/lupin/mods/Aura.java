@@ -53,7 +53,7 @@ public class Aura extends Mod {
 
 		if (ModsUtil.canAura()) {
 
-			if ((!IN_GUI.isChecked() && mc.currentScreen == null) || IN_GUI.isChecked()) {
+			if (IN_GUI.isChecked() || mc.currentScreen == null) {
 
 				try  {
 
@@ -107,10 +107,11 @@ public class Aura extends Mod {
 							target = null;
 						}
 					}
-				} catch (Exception e) {
+				} catch (Exception ignored) {
 
 				}
 			}
 		}
 	}
+
 }

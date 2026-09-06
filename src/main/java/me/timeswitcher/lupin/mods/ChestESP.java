@@ -10,4 +10,5 @@ public class ChestESP extends Mod {
 	public ChestESP(String name) {
 		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Draws a box around chests in the world.");
 	}
+
 }

@@ -59,7 +59,7 @@ public class LupinAltLoginScreen extends Screen {
 						error = true;
 					}
 
-				} catch (Exception e) {
+				} catch (Exception ignored) {
 
 				}
 
@@ -158,14 +158,12 @@ public class LupinAltLoginScreen extends Screen {
 	@Override
 	public void render(int p_render_1_, int p_render_2_, float p_render_3_) {
 		this.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
+
 		Lupin.instance.getFontManager().verdana.drawCenteredString("Change minecraft account", this.width / 2, 20, 16777215, -1);
-		//this.drawCenteredString(this.font, "Change minecraft account", this.width / 2, 17, 16777215);
 		Lupin.instance.getFontManager().verdana.drawString("User", this.width / 2 - 100, 53, Color.WHITE.getRGB(), -1);
-		//this.drawString(this.font, I18n.format("User"), this.width / 2 - 100, 53, Color.WHITE.getRGB());
 		Lupin.instance.getFontManager().verdana.drawString("Password", this.width / 2 - 100, 93, Color.WHITE.getRGB(), -1);
-		//this.drawString(this.font, I18n.format("Password"), this.width / 2 - 100, 94, Color.WHITE.getRGB());
 		Lupin.instance.getFontManager().verdana.drawString("User:Password", this.width / 2 - 100, 133, Color.WHITE.getRGB(), -1);
-		//this.drawString(this.font, I18n.format("User:Password"), this.width / 2 - 100, 135, Color.WHITE.getRGB());
+
 		this.userField.render(p_render_1_, p_render_2_, p_render_3_);
 		this.passField.render(p_render_1_, p_render_2_, p_render_3_);
 		this.userpassField.render(p_render_1_, p_render_2_, p_render_3_);
@@ -173,7 +171,6 @@ public class LupinAltLoginScreen extends Screen {
 		if (error == true) {
 
 			Lupin.instance.getFontManager().verdana.drawCenteredString("\u00A74Login failed", this.width / 2, 35, Color.RED.getRGB(), -1);
-			//drawCenteredString(font, "\u00A74Login failed", this.width / 2, 35, Color.RED.getRGB());
 
 			e += 1;
 
@@ -185,12 +182,11 @@ public class LupinAltLoginScreen extends Screen {
 		}
 		RenderUtil.drawRect(this.width / 2 - 100, this.height / 2 + 55 + 10, this.width / 2 + 100, this.height / 2 + 55 + 30, 0, 0, 0, 0.9f);
 		Lupin.instance.getFontManager().verdana.drawString("Login", this.width / 2 - 12, this.height / 2 + 69, Color.WHITE.getRGB(), -1);
-		//font.drawString("Login", this.width / 2 - 12, this.height / 2 + 55 + 16, Color.WHITE.getRGB());
 
 		RenderUtil.drawRect(this.width / 2 - 100, this.height / 2 + 55 + 60, this.width / 2 + 100, this.height / 2 + 55 + 40, 0, 0, 0, 0.9f);
 		Lupin.instance.getFontManager().verdana.drawString("Back", this.width / 2 - 10, this.height / 2 + 99, Color.WHITE.getRGB(), -1);
-		//font.drawString("Back", this.width / 2 - 10, this.height / 2 + 55 + 46, Color.WHITE.getRGB());
 
 		super.render(p_render_1_, p_render_2_, p_render_3_);
 	}
+
 }

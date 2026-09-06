@@ -30,4 +30,5 @@ public class FancyChat extends Mod {
 
 		return new String(Character.toChars(c + 0xfee0));
 	}
+
 }

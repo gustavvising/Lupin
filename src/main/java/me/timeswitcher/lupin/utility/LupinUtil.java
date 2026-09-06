@@ -114,4 +114,5 @@ public class LupinUtil {
 	public static void setResize(boolean resize) {
 		LupinUtil.resize = resize;
 	}
+
 }

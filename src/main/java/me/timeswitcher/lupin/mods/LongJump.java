@@ -46,32 +46,7 @@ public class LongJump extends Mod {
 						final double xDir = Math.cos((direction + 90.0f) * Math.PI / 180.0);
 						final double zDir = Math.sin((direction + 90.0f) * Math.PI / 180.0);
 
-						double SPEED = 0;
-
-						if (mc.player.fallDistance < 0.075444065f) {
-
-							SPEED = 0.9d;
-						}
-						if (mc.player.fallDistance >= 0.075444065f && mc.player.fallDistance < 0.22777925f) {
-
-							SPEED = 0.8d;
-						}
-						if (mc.player.fallDistance >= 0.22777925f && mc.player.fallDistance < 0.45546773f) {
-
-							SPEED = 0.7d;
-						}
-						if (mc.player.fallDistance >= 0.45546773f && mc.player.fallDistance < 0.7570025f) {
-
-							SPEED = 0.6d;
-						}
-						if (mc.player.fallDistance >= 0.7570025f && mc.player.fallDistance < 1.1309065f) {
-
-							SPEED = 0.5d;
-						}
-						if (mc.player.fallDistance >= 1.1309065f) {
-
-							SPEED = 0.4d;
-						}
+						double SPEED = getSpeed();
 						PlayerUtil.setMotion(xDir * SPEED, PlayerUtil.motionY(), zDir * SPEED);
 
 					} else {
@@ -88,5 +63,35 @@ public class LongJump extends Mod {
 				}
 			}
 		}
+	}
+
+	private static double getSpeed() {
+		double SPEED = 0;
+
+		if (mc.player.fallDistance < 0.075444065f) {
+
+			SPEED = 0.9d;
+		}
+		if (mc.player.fallDistance >= 0.075444065f && mc.player.fallDistance < 0.22777925f) {
+
+			SPEED = 0.8d;
+		}
+		if (mc.player.fallDistance >= 0.22777925f && mc.player.fallDistance < 0.45546773f) {
+
+			SPEED = 0.7d;
+		}
+		if (mc.player.fallDistance >= 0.45546773f && mc.player.fallDistance < 0.7570025f) {
+
+			SPEED = 0.6d;
+		}
+		if (mc.player.fallDistance >= 0.7570025f && mc.player.fallDistance < 1.1309065f) {
+
+			SPEED = 0.5d;
+		}
+		if (mc.player.fallDistance >= 1.1309065f) {
+
+			SPEED = 0.4d;
+		}
+		return SPEED;
 	}
 }

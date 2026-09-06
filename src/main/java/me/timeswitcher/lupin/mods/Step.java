@@ -62,8 +62,6 @@ public class Step extends Mod {
 								PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, mc.player.onGround));
 								PlayerUtil.setPos(PlayerUtil.posX(), y + 1, PlayerUtil.posZ());
 
-								//ChatUtil.sendClientMessageNoPrefix("1");
-
 								STEP_TIMER.reset();
 							}
 
@@ -83,8 +81,6 @@ public class Step extends Mod {
 										PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 										PlayerUtil.setPos(PlayerUtil.posX(), y + 1.5d, PlayerUtil.posZ());
 
-										//ChatUtil.sendClientMessageNoPrefix("1.5");
-
 										STEP_TIMER.reset();
 									}
 								}
@@ -101,16 +97,11 @@ public class Step extends Mod {
 
 											//2 block step
 											PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
-											//PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .7531999805212d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 											PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.00133597911214d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 											PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
-											//PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.24918707874468d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
-											//PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.25220334025373d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 											PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 
 											PlayerUtil.setPos(PlayerUtil.posX(), y + 2, PlayerUtil.posZ());
-
-											//ChatUtil.sendClientMessageNoPrefix("2");
 
 											STEP_TIMER.reset();
 										}
@@ -137,8 +128,6 @@ public class Step extends Mod {
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 2.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 3, PlayerUtil.posZ());
-
-													//ChatUtil.sendClientMessageNoPrefix("3");
 
 													STEP_TIMER.reset();
 
@@ -169,8 +158,6 @@ public class Step extends Mod {
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 3.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 4, PlayerUtil.posZ());
-
-													//ChatUtil.sendClientMessageNoPrefix("4");
 
 													STEP_TIMER.reset();
 
@@ -205,8 +192,6 @@ public class Step extends Mod {
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 4.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 5, PlayerUtil.posZ());
-
-													//ChatUtil.sendClientMessageNoPrefix("5");
 
 													STEP_TIMER.reset();
 
@@ -245,8 +230,6 @@ public class Step extends Mod {
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 5.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 6, PlayerUtil.posZ());
-
-													//ChatUtil.sendClientMessageNoPrefix("6");
 
 													STEP_TIMER.reset();
 
@@ -289,8 +272,6 @@ public class Step extends Mod {
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 6.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 7, PlayerUtil.posZ());
-
-													//ChatUtil.sendClientMessageNoPrefix("7");
 
 													STEP_TIMER.reset();
 
@@ -338,8 +319,6 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 8, PlayerUtil.posZ());
 
-													//ChatUtil.sendClientMessageNoPrefix("8");
-
 													STEP_TIMER.reset();
 
 													ModsUtil.setTimerSpeed(150f);
@@ -363,4 +342,5 @@ public class Step extends Mod {
 			}
 		}
 	}
+
 }

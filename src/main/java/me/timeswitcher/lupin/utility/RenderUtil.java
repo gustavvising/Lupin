@@ -94,10 +94,10 @@ public class RenderUtil {
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		RenderSystem.color4f(red, green, blue, alpha);
 		vertexbuffer.begin(7, DefaultVertexFormats.POSITION);
-		vertexbuffer.pos((double) left, (double) bottom, 0.0D).endVertex();
-		vertexbuffer.pos((double) right, (double) bottom, 0.0D).endVertex();
-		vertexbuffer.pos((double) right, (double) top, 0.0D).endVertex();
-		vertexbuffer.pos((double) left, (double) top, 0.0D).endVertex();
+		vertexbuffer.pos(left, bottom, 0.0D).endVertex();
+		vertexbuffer.pos(right, bottom, 0.0D).endVertex();
+		vertexbuffer.pos(right, top, 0.0D).endVertex();
+		vertexbuffer.pos(left, top, 0.0D).endVertex();
 		tessellator.draw();
 		RenderSystem.enableTexture();
 		RenderSystem.disableBlend();
@@ -403,11 +403,11 @@ public class RenderUtil {
 	public static void renderEntityNametag(Entity entityIn, String text, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		double d0 = Lupin.mc.getRenderManager().squareDistanceTo(entityIn);
 		if (!(d0 > 4096.0D)) {
-			boolean flag = true/*!entityIn.isDiscrete()*/;
+			boolean flag = true;
 			float f = entityIn.getHeight() + 0.5F;
 			int i = (text.contains("deadmau5") || text.contains(LupinUser.SPECIALIGN)) ? -10 : 0;
 			matrixStackIn.push();
-			matrixStackIn.translate(0.0D, (double)f, 0.0D);
+			matrixStackIn.translate(0.0D, f, 0.0D);
 			matrixStackIn.rotate(Lupin.mc.getRenderManager().getCameraOrientation());
 			matrixStackIn.scale(-0.025F - (Nametags.SIZE.getReturnValue() / 100), -0.025F - (Nametags.SIZE.getReturnValue() / 100), 0.025F + (Nametags.SIZE.getReturnValue() / 100));
 			Matrix4f matrix4f = matrixStackIn.getLast().getMatrix();
@@ -416,10 +416,8 @@ public class RenderUtil {
 			FontRenderer fontrenderer = Lupin.mc.fontRenderer;
 			float f2 = (float)(-fontrenderer.getStringWidth(text) / 2);
 			fontrenderer.renderString(text, f2, (float)i, -1, false, matrix4f, bufferIn, flag, j, packedLightIn);
-			if (flag) {
-				fontrenderer.renderString(text, f2, (float)i, -1, false, matrix4f, bufferIn, false, 0, packedLightIn);
-			}
-			matrixStackIn.pop();
+            fontrenderer.renderString(text, f2, (float) i, -1, false, matrix4f, bufferIn, false, 0, packedLightIn);
+            matrixStackIn.pop();
 		}
 	}
 
@@ -467,4 +465,5 @@ public class RenderUtil {
 	public static Color getPinkPurple() {
 		return pinkPurple;
 	}
+
 }

@@ -11,7 +11,7 @@ import me.timeswitcher.lupin.utility.PlayerUtil;
 public class Sprint extends Mod {
 
 	public Sprint(String name) {
-		super(name, Category.MOVE, GLFW.GLFW_KEY_UNKNOWN, "Automatically sets the player to sprinting. No need to press the sprint button.");
+		super(name, Category.MOVE, GLFW.GLFW_KEY_UNKNOWN, "Automatically sets the player to sprinting.");
 	}
 
 	@Override
@@ -22,4 +22,5 @@ public class Sprint extends Mod {
 			}
 		}
 	}
+
 }

@@ -109,7 +109,6 @@ public class LupinClickGuiScreen extends Screen {
 					RenderUtil.drawRect(x + panel.getX(), y - 120, x + (panel.getX() + panel.getWidth()), y + 170, COMPONENTBACKGROUNDCOLOR.getRGB());
 					RenderUtil.drawRect(x + panel.getX(), y + panel.getY(), x + (panel.getX() + panel.getWidth()), y + (panel.getY() + panel.getHeight()), panel.getColor());
 				}
-				//Lupin.instance.getFontManager().verdana.drawStringWithShadow(panel.getName(), (int)(x + panel.getX() + panel.getWidth() / 2 - Lupin.instance.getFontManager().verdana.getStringWidth(panel.getName()) / 2), (int)(y + panel.getY() + (panel.getHeight() - HEIGHTCENTERADJUSTMENT) - 2), Color.WHITE.getRGB(), -1);
 				font.drawStringWithShadow(panel.getName(), (int)(x + panel.getX() + panel.getWidth() / 2 - font.getStringWidth(panel.getName()) / 2), (int)(y + panel.getY() + (panel.getHeight() - HEIGHTCENTERADJUSTMENT)), Color.WHITE.getRGB());
 
 				if (!panel.isHideButtons()) {
@@ -122,7 +121,6 @@ public class LupinClickGuiScreen extends Screen {
 						}
 						String textColor = button.getMod().isToggled() ? ENABLEDTEXTCOLOR : DISABLEDTEXTCOLOR;
 						String text = button.getMod().hasOptions() ? (button.getMod().isToggled() ? textColor + button.getMod().getName() + " +" : textColor + button.getMod().getName() + " \u00A7r+") : textColor + button.getMod().getName();
-						//Lupin.instance.getFontManager().verdana.drawString(text, (int) (x + panel.getX() + panel.getWidth() / 2 - Lupin.instance.getFontManager().verdana.getStringWidth(button.getText()) / 2), (int) (y + CATEGORYYSTART + panel.getHeight() + (BUTTONSPACEADJUSTMENT * i) + (BUTTONSIZEADJUSTMENT * 2) - 2), panel.getColor(), -1);
 						font.drawString(text, (float) (x + panel.getX() + panel.getWidth() / 2 - font.getStringWidth(button.getText()) / 2), (float) (y + CATEGORYYSTART + panel.getHeight() + (BUTTONSPACEADJUSTMENT * i) + (BUTTONSIZEADJUSTMENT * 2)), panel.getColor());
 
 						if (button.isHovered(mouseX, mouseY, i)) {
@@ -130,7 +128,6 @@ public class LupinClickGuiScreen extends Screen {
 							if (button.toolTipTimer.isDelayComplete(TOOLTIPDELAY)) {
 
 								RenderUtil.drawRect(x - 270, y + 170, x + 270, y + 180, panel.getColor());
-								//Lupin.instance.getFontManager().verdana.drawStringWithShadow(button.getMod().getDescription(), x - (Lupin.instance.getFontManager().verdana.getStringWidth(button.getMod().getDescription()) / 2), y + 168, Color.WHITE.getRGB(), -1);
 								font.drawStringWithShadow(button.getMod().getDescription(), x - (font.getStringWidth(button.getMod().getDescription()) / 2), y + 171, Color.WHITE.getRGB());
 							}
 
@@ -141,7 +138,6 @@ public class LupinClickGuiScreen extends Screen {
 					}
 					if (panel.getCategory() == Category.COMBAT) {
 						RenderUtil.drawRect(x + panel.getX() + 5, y + 155, x + panel.getX() + panel.getWidth() - 5, y + 165, panel.getColor());
-						//Lupin.instance.getFontManager().verdana.drawString("Target Options", (int) ((x + panel.getX() + (panel.getWidth() / 2)) - Lupin.instance.getFontManager().verdana.getStringWidth("Target Options") / 2), y + 154, Color.WHITE.getRGB(), -1);
 						font.drawString("Target Options", (float) ((x + panel.getX() + (panel.getWidth() / 2)) - font.getStringWidth("Target Options") / 2), y + 156, Color.WHITE.getRGB());
 					}
 				}
@@ -384,4 +380,5 @@ public class LupinClickGuiScreen extends Screen {
 			return mouseX >= x + panel.getX() && mouseX <= x + (panel.getX() + panel.getWidth()) && mouseY >= y + CATEGORYYSTART + panel.getHeight() + (BUTTONSPACEADJUSTMENT * i) + BUTTONSIZEADJUSTMENT && mouseY <= y + CATEGORYYSTART + panel.getHeight() + (BUTTONSPACEADJUSTMENT * i) + (panel.getHeight() / 2) + BUTTONSIZEADJUSTMENT;
 		}
 	}
+
 }

@@ -87,4 +87,5 @@ public class NoSlowdown extends Mod {
 			}
 		}
 	}
+
 }

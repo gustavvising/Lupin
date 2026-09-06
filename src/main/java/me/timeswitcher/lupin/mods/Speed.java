@@ -49,4 +49,5 @@ public class Speed extends Mod {
 			ModsUtil.resetTimerSpeed();
 		}
 	}
+
 }

@@ -21,7 +21,7 @@ public class HandSwitch extends Mod {
 	private HandSide orginalHandSide;
 
 	public HandSwitch(String name) {
-		super(name, Category.PLAYER, GLFW.GLFW_KEY_UNKNOWN, "Swaps left and right hand, and also swaps held items. Mostly for fun.");
+		super(name, Category.PLAYER, GLFW.GLFW_KEY_UNKNOWN, "Swaps left and right hand.");
 	}
 
 	@Override
@@ -94,4 +94,5 @@ public class HandSwitch extends Mod {
 	private void setOrginalHandSide(HandSide orginalHandSide) {
 		this.orginalHandSide = orginalHandSide;
 	}
+
 }

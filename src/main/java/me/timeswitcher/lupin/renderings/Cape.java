@@ -64,4 +64,5 @@ public class Cape extends LayerRenderer<AbstractClientPlayerEntity, PlayerModel<
 			}
 		}
 	}
+
 }

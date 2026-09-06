@@ -471,5 +471,7 @@ public class ServerSelectionListScreen extends ExtendedList<ServerSelectionListS
 		public ServerData getServerData() {
 			return this.server;
 		}
+
 	}
+
 }

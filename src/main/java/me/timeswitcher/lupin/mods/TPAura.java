@@ -191,7 +191,7 @@ public class TPAura extends Mod {
 
 				} else if (target != null) {
 
-					if ((!IN_GUI.isChecked() && mc.currentScreen == null) || IN_GUI.isChecked()) {
+					if (IN_GUI.isChecked() || mc.currentScreen == null) {
 
 						double yDist = PlayerUtil.posY(target) - PlayerUtil.posY();
 
@@ -220,13 +220,9 @@ public class TPAura extends Mod {
 									if (ClientWorld.isValid(new BlockPos(px, py, z))) {
 										PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(px, py, z, true));
 										PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(px, -0, z, true));
-										//PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(px, py, z, mc.player.onGround));
-										//UTIL.setPos(px, py, z);
 
 										lastTPPos = new BlockPos(px, py, z);
 
-										//px = px;
-										//py = py;
 										pz = z;
 
 										startedTP = true;
@@ -243,13 +239,10 @@ public class TPAura extends Mod {
 									if (ClientWorld.isValid(new BlockPos(px + (distance < 0 ? -TP_DIST.getReturnValue() : TP_DIST.getReturnValue()), py, z))) {
 										PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(px + (distance < 0 ? -TP_DIST.getReturnValue() : TP_DIST.getReturnValue()), py, z, true));
 										PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(px + (distance < 0 ? -TP_DIST.getReturnValue() : TP_DIST.getReturnValue()), -0, z, true));
-										//PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(px + (distance < 0 ? -TP_DIST.getReturnValue() : TP_DIST.getReturnValue()), py, z, mc.player.onGround));
-										//UTIL.setPos(px + (distance < 0 ? -tpDist : tpDist), py, z);
 
 										lastTPPos = new BlockPos(px + (distance < 0 ? -TP_DIST.getReturnValue() : TP_DIST.getReturnValue()), py, z);
 
 										px = px + (distance < 0 ? -TP_DIST.getReturnValue() : TP_DIST.getReturnValue());
-										//py = py;
 										pz = z;
 
 										startedTP = true;
@@ -289,4 +282,5 @@ public class TPAura extends Mod {
 			}
 		}
 	}
+
 }

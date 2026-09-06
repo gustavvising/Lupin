@@ -140,4 +140,5 @@ public class Vector2f {
 	public String toString() {
 		return String.format("[%s, %s]", this.x, this.y);
 	}
+
 }

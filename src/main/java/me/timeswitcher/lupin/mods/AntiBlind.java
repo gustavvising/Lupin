@@ -21,4 +21,5 @@ public class AntiBlind extends Mod {
 			mc.player.removePotionEffect(Effects.BLINDNESS);
 		}
 	}
+
 }

@@ -56,9 +56,7 @@ public class Crasher extends Mod {
 					item.setTagInfo("pages", list);
 					item.setTag(tag);
 					while (true) {
-						//PlayerUtil.sendPacket(new CPlayerDiggingPacket(Action.START_DESTROY_BLOCK, mc.player.getPosition().down(), Direction.DOWN));
 						PlayerUtil.sendPacket(new CCreativeInventoryActionPacket(36, item));
-						//PlayerUtil.sendPacket(new CClickWindowPacket(Integer.MAX_VALUE, 36, Integer.MIN_VALUE, ClickType.PICKUP, item, Short.MIN_VALUE));
 						Thread.sleep(10L);
 					}
 				} catch (Exception e) {
@@ -97,14 +95,10 @@ public class Crasher extends Mod {
 	}
 
 	@Override
-	public void onEnable() {
-
-	}
+	public void onEnable() {}
 
 	@Override
-	public void onDisable() {
-
-	}
+	public void onDisable() {}
 
 	@Override
 	public void onUpdate() {
@@ -133,4 +127,5 @@ public class Crasher extends Mod {
 			}
 		}
 	}
+
 }

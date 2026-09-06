@@ -14,4 +14,5 @@ public class Wallhax extends Mod {
 		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Renders entities through blocks. (buggy)");
 		this.getCheckBoxes().add(ONLY_PLAYERS);
 	}
+
 }

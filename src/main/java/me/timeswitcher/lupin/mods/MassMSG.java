@@ -49,4 +49,5 @@ public class MassMSG extends Mod {
 			}
 		}
 	}
+
 }

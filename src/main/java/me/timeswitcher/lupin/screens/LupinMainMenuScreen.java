@@ -193,16 +193,6 @@ public class LupinMainMenuScreen extends Screen {
 		Lupin.instance.getFontManager().verdanaBold.drawString("SETTINGS", x - 85, y + 130, BUTTONTEXTCOLOR, -1);
 		Lupin.instance.getFontManager().verdanaBold.drawString("ACCESSIBILITY", x + 20, y + 130, BUTTONTEXTCOLOR, -1);
 		Lupin.instance.getFontManager().verdanaBold.drawString("QUIT", x + 167, y + 130, BUTTONTEXTCOLOR, -1);
-		
-		//font.drawStringWithShadow("Singleplayer", x - 210, y + 10, BUTTONTEXTCOLOR);
-		//font.drawStringWithShadow("Multiplayer", x - 86.5f, y + 10, BUTTONTEXTCOLOR);
-		//font.drawStringWithShadow("Realm", x + 43.5f, y + 10, BUTTONTEXTCOLOR);
-		//font.drawStringWithShadow("Forge", x + 165.5f, y + 10, BUTTONTEXTCOLOR);
-
-		//font.drawStringWithShadow("Language", x - 205.5f, y + 130, BUTTONTEXTCOLOR);
-		//font.drawStringWithShadow("Settings", x - 80.5f, y + 130, BUTTONTEXTCOLOR);
-		//font.drawStringWithShadow("Accessibility", x + 30, y + 130, BUTTONTEXTCOLOR);
-		//font.drawStringWithShadow("Quit", x + 171.5f, y + 130, BUTTONTEXTCOLOR);
 	}
 
 	private boolean isSingleplayerHovered(final double mouseX, final double mouseY) {
@@ -293,4 +283,5 @@ public class LupinMainMenuScreen extends Screen {
 		}
 		return super.mouseClicked(mouseX, mouseY, mouseButton);
 	}
+
 }

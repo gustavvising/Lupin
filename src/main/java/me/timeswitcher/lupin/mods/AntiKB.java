@@ -24,7 +24,7 @@ public class AntiKB extends Mod {
 		}
 		if (mc.player.hurtTime > 5) {
 			PlayerUtil.setMotion(PlayerUtil.motionX() / 1.4d, jump ? PlayerUtil.motionY() : PlayerUtil.motionY() / 1.8d, PlayerUtil.motionZ() / 1.4d);
-			//PlayerUtil.setMoveSpeed(0.17d);
 		}
 	}
+	
 }

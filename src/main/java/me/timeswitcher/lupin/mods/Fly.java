@@ -56,8 +56,6 @@ public class Fly extends Mod {
 		
 		mc.player.movementInput.sneaking = false;
 		
-		//mc.player.onGround = true;
-		
 		if (SLOWDOWN_TIMER.isDelayComplete(500f)) {
 			slowDown = true;
 		}
@@ -93,8 +91,6 @@ public class Fly extends Mod {
 		PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(PlayerUtil.posX() + x, PlayerUtil.posY(), PlayerUtil.posZ() + z, true));
 		PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(PlayerUtil.posX() + x, PlayerUtil.posY() + y, PlayerUtil.posZ() + z, true));
 		PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(PlayerUtil.posX(), -0, PlayerUtil.posZ(), true));
-		//PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(PlayerUtil.posX(), 256, PlayerUtil.posZ(), true));
-		//PlayerUtil.setPos(PlayerUtil.posX() + x, PlayerUtil.posY() + y, PlayerUtil.posZ() + z);
 	}
 
 	private void old() {
@@ -145,34 +141,4 @@ public class Fly extends Mod {
 		}
 	}
 
-	//up
-	//Y: 66.41999998688698
-	//MotionY: 0.33319999363422365
-	//Y: 66.7531999805212
-	//MotionY: 0.24813599859094576
-	//Y: 67.00133597911214
-	//MotionY: 0.16477328182606651
-	//Y: 67.16610926093821
-	//MotionY: 0.08307781780646721
-	//Y: 67.24918707874468
-	//MotionY: 0.0030162615090425808
-	//Y: 67.25220334025373
-
-	//down
-	//MotionY: -0.07544406518948656
-	//Y: 67.17675927506424
-	//MotionY: -0.15233518685055708
-	//FallDist: 0.075444065
-	//Y: 67.02442408821369
-	//MotionY: -0.22768848754498797
-	//FallDist: 0.22777925
-	//Y: 66.79673560066871
-	//MotionY: -0.30153472366278034
-	//FallDist: 0.45546773
-	//Y: 66.49520087700593
-	//MotionY: -0.3739040364667221
-	//FallDist: 0.7570025
-	//Y: 66.1212968405392
-	//MotionY: -0.4448259643949201
-	//FallDist: 1.1309065
 }

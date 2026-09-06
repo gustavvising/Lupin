@@ -470,10 +470,10 @@ public class InsertTextBox extends Widget implements IRenderable, IGuiEventListe
 		RenderSystem.enableColorLogicOp();
 		RenderSystem.logicOp(GlStateManager.LogicOp.OR_REVERSE);
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
-		bufferbuilder.pos((double)startX, (double)endY, 0.0D).endVertex();
-		bufferbuilder.pos((double)endX, (double)endY, 0.0D).endVertex();
-		bufferbuilder.pos((double)endX, (double)startY, 0.0D).endVertex();
-		bufferbuilder.pos((double)startX, (double)startY, 0.0D).endVertex();
+		bufferbuilder.pos(startX, endY, 0.0D).endVertex();
+		bufferbuilder.pos(endX, endY, 0.0D).endVertex();
+		bufferbuilder.pos(endX, startY, 0.0D).endVertex();
+		bufferbuilder.pos(startX, startY, 0.0D).endVertex();
 		tessellator.draw();
 		RenderSystem.disableColorLogicOp();
 		RenderSystem.enableTexture();
@@ -585,4 +585,5 @@ public class InsertTextBox extends Widget implements IRenderable, IGuiEventListe
 	public void setX(int p_212952_1_) {
 		this.x = p_212952_1_;
 	}
+
 }

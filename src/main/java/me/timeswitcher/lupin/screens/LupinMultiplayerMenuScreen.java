@@ -75,8 +75,7 @@ public class LupinMultiplayerMenuScreen extends Screen {
 			try {
 				this.lanServerDetector = new LanServerDetector.LanServerFindThread(this.lanServerList);
 				this.lanServerDetector.start();
-			} catch (Exception exception) {
-				//  LOGGER.warn("Unable to start LAN server detection: {}", (Object)exception.getMessage());
+			} catch (Exception ignored) {
 			}
 
 			this.serverListSelector = new ServerSelectionListScreen(this, this.minecraft, this.width, this.height, 32, this.height - 64, 36);
@@ -221,7 +220,6 @@ public class LupinMultiplayerMenuScreen extends Screen {
 		this.drawCenteredString(this.font, this.title.getFormattedText(), this.width / 2, 20, 16777215);
 		RenderUtil.drawRect(2, 2, 72, 22, 0, 0, 0, 0.9F);
 		Lupin.instance.getFontManager().verdana.drawString("Alt login", 18, 6, Color.WHITE.getRGB(), -1);
-		//font.drawString("Alt login", 18, 8, Color.WHITE.getRGB());
 
 		Color color;
 
@@ -235,7 +233,6 @@ public class LupinMultiplayerMenuScreen extends Screen {
 		}
 		String loggedInAs = "Logged in as: " + Lupin.mc.getSession().getUsername();
 		Lupin.instance.getFontManager().verdana.drawString(loggedInAs, 90, 6, color.getRGB(), -1);
-		//font.drawString(loggedInAs, 90, 8, color.getRGB());
 
 		if (this.hoveringText != null) {
 			this.renderTooltip(Lists.newArrayList(Splitter.on("\n").split(this.hoveringText)), p_render_1_, p_render_2_);
@@ -288,4 +285,5 @@ public class LupinMultiplayerMenuScreen extends Screen {
 	public ServerList getServerList() {
 		return this.savedServerList;
 	}
+
 }

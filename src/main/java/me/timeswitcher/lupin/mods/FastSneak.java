@@ -54,4 +54,5 @@ public class FastSneak extends Mod {
 			SPEED_TIMER.reset();
 		}
 	}
+
 }

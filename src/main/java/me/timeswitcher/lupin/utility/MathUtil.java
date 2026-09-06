@@ -15,4 +15,5 @@ public class MathUtil {
 		}
 		return start + (end - start) * Math.random();
 	}
+
 }

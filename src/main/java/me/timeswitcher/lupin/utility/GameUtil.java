@@ -27,7 +27,8 @@ public class GameUtil {
 	}
 
 	public static boolean isRenderNull() {
-		return Lupin.mc.getTextureManager() == null || Lupin.mc.gameRenderer == null || Lupin.mc.worldRenderer == null;
+        Lupin.mc.getTextureManager();
+        return Lupin.mc.gameRenderer == null || Lupin.mc.worldRenderer == null;
 	}
 
 	public static boolean isServerNull() {
@@ -64,4 +65,5 @@ public class GameUtil {
 			LupinUtil.setResize(false);
 		}
 	}
+
 }

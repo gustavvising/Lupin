@@ -20,4 +20,5 @@ public class Nametags extends Mod {
 		this.getCheckBoxes().add(ONLY_PLAYERS);
 		this.getCheckBoxes().add(HEALTH);
 	}
+
 }

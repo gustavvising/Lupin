@@ -16,4 +16,5 @@ public class ChatUtil {
 	public static void sendChatMessage(String message) {
 		Lupin.mc.player.sendChatMessage(message);
 	}
+
 }

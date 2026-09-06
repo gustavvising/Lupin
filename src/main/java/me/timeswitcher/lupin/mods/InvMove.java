@@ -33,4 +33,5 @@ public class InvMove extends Mod {
 			perspective = false;
 		}
 	}
+
 }

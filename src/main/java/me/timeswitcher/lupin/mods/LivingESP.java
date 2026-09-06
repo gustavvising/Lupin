@@ -44,13 +44,10 @@ public class LivingESP extends Mod {
 
 						if (entity != null) {
 
-							if (entity instanceof LivingEntity) {
-
-								if (entity.isGlowing()) {
-									entity.setGlowing(false);
-								}
-							}
-						}
+                            if (entity.isGlowing()) {
+                                entity.setGlowing(false);
+                            }
+                        }
 					}
 					addedGlow = false;
 					glowingEntities.clear();
@@ -74,19 +71,17 @@ public class LivingESP extends Mod {
 
 						if (entity != null) {
 
-							if (entity instanceof LivingEntity) {
-
-								if (entity.isGlowing()) {
-									entity.setGlowing(false);
-								}
-							}
-						}
+                            if (entity.isGlowing()) {
+                                entity.setGlowing(false);
+                            }
+                        }
 					}
 				}
 
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 
 			}
 		}
 	}
+
 }

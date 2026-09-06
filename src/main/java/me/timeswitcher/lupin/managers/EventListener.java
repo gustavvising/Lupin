@@ -436,10 +436,6 @@ public class EventListener {
 						PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 6.00133597911214d, PlayerUtil.posZ(), Lupin.mc.player.rotationYaw, Lupin.mc.player.rotationPitch, false));
 						PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 6.16610926093821d, PlayerUtil.posZ(), Lupin.mc.player.rotationYaw, Lupin.mc.player.rotationPitch, false));
 
-						//PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 6.41999998688698d, PlayerUtil.posZ(), Lupin.mc.player.rotationYaw, Lupin.mc.player.rotationPitch, false));
-						//PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 7.00133597911214d, PlayerUtil.posZ(), Lupin.mc.player.rotationYaw, Lupin.mc.player.rotationPitch, false));
-						//PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 7.16610926093821d, PlayerUtil.posZ(), Lupin.mc.player.rotationYaw, Lupin.mc.player.rotationPitch, false));
-
 						PlayerUtil.setPos(PlayerUtil.posX(), y + 7, PlayerUtil.posZ());
 
 						HighJump.jumped = true;
@@ -774,7 +770,6 @@ public class EventListener {
 					String bindText = "Press any key to bind " + keybindMod.getName();
 					RenderUtil.drawRect(0, 0, e.getWindow().getWidth(), e.getWindow().getHeight(), 0f, 0f, 0f, 0.4f);
 					Lupin.instance.getFontManager().verdana.drawStringWithShadow(bindText, width / 2 - (Lupin.mc.fontRenderer.getStringWidth(bindText) / 2), height / 2 - 30, Color.WHITE.getRGB(), -1);
-					//Lupin.mc.fontRenderer.drawStringWithShadow(bindText, width / 2 - (Lupin.mc.fontRenderer.getStringWidth(bindText) / 2), height / 2 - 30, Color.WHITE.getRGB());
 				}
 				if (!GameUtil.isChatOpen() && GameUtil.isFullScreen() && LupinUtil.isShowInfoHud()) {
 
@@ -787,7 +782,6 @@ public class EventListener {
 					String info = "XYZ: \u00A77" + posX + ", " + posY + ", " + posZ + "\u00A78 - \u00A7f" + "Facing:\u00A77 " + Lupin.mc.player.getHorizontalFacing() + " \u00A7f[" + "\u00A77" + direction + Lupin.mc.player.getHorizontalFacing().getAxis() + "\u00A7f]\u00A78 - " + PlayerUtil.getMoveSpeedString();
 
 					Lupin.instance.getFontManager().verdana.drawStringWithShadow(info, 2, height - 13, Color.WHITE.getRGB(), -1);
-					//Lupin.mc.fontRenderer.drawStringWithShadow(info, 2, height - 11, Color.WHITE.getRGB());
 
 					if (!Lupin.mc.isSingleplayer()) {
 
@@ -795,7 +789,6 @@ public class EventListener {
 
 							String version = Lupin.mc.getCurrentServerData().gameVersion;
 							Lupin.instance.getFontManager().verdana.drawStringWithShadow(version, (width - 4) - Lupin.instance.getFontManager().verdana.getStringWidth(version), height - 13, Color.LIGHT_GRAY.getRGB(), -1);
-							//Lupin.mc.fontRenderer.drawStringWithShadow(version, (width - 2) - Lupin.mc.fontRenderer.getStringWidth(version), height - 11, Color.LIGHT_GRAY.getRGB());
 						}
 					}
 				}
@@ -818,7 +811,6 @@ public class EventListener {
 					if (LupinUtil.isShowLogo()) {
 						RenderUtil.drawImage(LupinUtil.LUPINLOGO, -55, -65, 200, 200, 1.0f);
 						Lupin.instance.getFontManager().verdana.drawStringWithShadow(Lupin.VERSION, 80, 23, Color.LIGHT_GRAY.getRGB(), -1);
-						//Lupin.mc.fontRenderer.drawStringWithShadow(Lupin.VERSION, 80, 25, Color.LIGHT_GRAY.getRGB());
 					}
 				}
 
@@ -870,8 +862,7 @@ public class EventListener {
 						if (modCounter == Lupin.instance.getModHandler().getEnabledMods().size() - 1) {
 							RenderUtil.drawRect(width - mod.getAnimation() - 5, y + 12, width + (width - mod.getAnimation() - 5), y + 13, modListColor);
 						}
-						//Lupin.instance.getFontManager().verdana.drawStringWithShadow(mod.getNameAndMode(), (width - 3) - mod.getAnimation(), y - 1, modListColor, -1);
-						Lupin.mc.fontRenderer.drawString(mod.getNameAndMode(), (width - 2) - mod.getAnimation(), y + 2, modListColor);	
+						Lupin.mc.fontRenderer.drawString(mod.getNameAndMode(), (width - 2) - mod.getAnimation(), y + 2, modListColor);
 
 						y += 12;
 						colorFadeCounter++;
@@ -883,14 +874,12 @@ public class EventListener {
 				if (VClip.up != 0) {
 					double y = VClip.up;
 					Lupin.instance.getFontManager().verdana.drawStringWithShadow("VClip position \u00A77" + y + "\u00A7f blocks up found. \u00A77Jump\u00A7f to vclip.", 2, 150, Color.WHITE.getRGB(), -1);
-					//Lupin.mc.fontRenderer.drawStringWithShadow("VClip position \u00A77" + y + "\u00A7f blocks up found. \u00A77Jump\u00A7f to vclip.", 2, 150, Color.WHITE.getRGB());
 					RenderSystem.popMatrix();
 					VClip.up = 0;
 				}
 				if (VClip.down != 0) {
 					double y = VClip.down;
 					Lupin.instance.getFontManager().verdana.drawStringWithShadow("VClip position \u00A77" + y + "\u00A7f blocks down found. \u00A77Sneak\u00A7f to vclip.", 2, 160, Color.WHITE.getRGB(), -1);
-					//Lupin.mc.fontRenderer.drawStringWithShadow("VClip position \u00A77" + y + "\u00A7f blocks down found. \u00A77Sneak\u00A7f to vclip.", 2, 160, Color.WHITE.getRGB());
 					VClip.down = 0;
 				}
 				if (Aura.target != null) {
@@ -929,11 +918,8 @@ public class EventListener {
 							RenderUtil.drawRect(width / 2 - 131, height / 2 + 160, width / 2 + 130, height / 2 + 161, 0, 0, 0, 0.7F);
 							RenderUtil.drawRect(width / 2 + 131, height / 2 + 60, width / 2 + 130, height / 2 + 161, 0, 0, 0, 0.7F);
 
-							//Lupin.instance.getFontManager().verdana.drawString(Aura.target.getDisplayName().getFormattedText(), width / 2 + 10, height / 2 + 70, Color.WHITE.getRGB(), -1);
 							Lupin.mc.fontRenderer.drawString(Aura.target.getDisplayName().getFormattedText(), width / 2 + 10, height / 2 + 70, Color.WHITE.getRGB());
-							//Lupin.instance.getFontManager().verdana.drawString("\u00A7fHP \u00A7r" + Aura.target.getHealth() + "\u00A77/\u00A72" + Aura.target.getMaxHealth(), width / 2 + 10, height / 2 + 115, new Color(hRed, hGreen, 0).getRGB(), -1);
 							Lupin.mc.fontRenderer.drawString("\u00A7fHP \u00A7r" + Aura.target.getHealth() + "\u00A77/\u00A72" + Aura.target.getMaxHealth(), width / 2 + 10, height / 2 + 115, new Color(hRed, hGreen, 0).getRGB());
-							//Lupin.instance.getFontManager().verdana.drawString("Distance \u00A77" + (int)(Lupin.mc.player.getDistance(Aura.target) * 100.0F) / 100.0F +"m", width / 2 + 10, height / 2 + 127, Color.WHITE.getRGB(), -1);
 							Lupin.mc.fontRenderer.drawString("Distance \u00A77" + (int)(Lupin.mc.player.getDistance(Aura.target) * 100.0F) / 100.0F +"m", width / 2 + 10, height / 2 + 127, Color.WHITE.getRGB());
 
 							RenderUtil.drawRect(width / 2 + 11, height / 2 + 94, width / 2 + 123, height / 2 + 106, 0, 0, 0, 1.0F);
@@ -981,11 +967,8 @@ public class EventListener {
 							RenderUtil.drawRect(width / 2 - 131, height / 2 + 160, width / 2 + 130, height / 2 + 161, 0, 0, 0, 0.7F);
 							RenderUtil.drawRect(width / 2 + 131, height / 2 + 60, width / 2 + 130, height / 2 + 161, 0, 0, 0, 0.7F);
 
-							//Lupin.instance.getFontManager().verdana.drawString(TPAura.target.getDisplayName().getFormattedText(), width / 2 + 10, height / 2 + 70, Color.WHITE.getRGB(), -1);
 							Lupin.mc.fontRenderer.drawString(TPAura.target.getDisplayName().getFormattedText(), width / 2 + 10, height / 2 + 70, Color.WHITE.getRGB());
-							//Lupin.instance.getFontManager().verdana.drawString("\u00A7fHP \u00A7r" + TPAura.target.getHealth() + "\u00A77/\u00A72" + TPAura.target.getMaxHealth(), width / 2 + 10, height / 2 + 115, new Color(hRed, hGreen, 0).getRGB(), -1);
 							Lupin.mc.fontRenderer.drawString("\u00A7fHP \u00A7r" + TPAura.target.getHealth() + "\u00A77/\u00A72" + TPAura.target.getMaxHealth(), width / 2 + 10, height / 2 + 115, new Color(hRed, hGreen, 0).getRGB());
-							//Lupin.instance.getFontManager().verdana.drawString("Distance \u00A77" + (int)(Lupin.mc.player.getDistance(TPAura.target) * 100.0F) / 100.0F +"m", width / 2 + 10, height / 2 + 127, Color.WHITE.getRGB(), -1);
 							Lupin.mc.fontRenderer.drawString("Distance \u00A77" + (int)(Lupin.mc.player.getDistance(TPAura.target) * 100.0F) / 100.0F +"m", width / 2 + 10, height / 2 + 127, Color.WHITE.getRGB());
 
 							RenderUtil.drawRect(width / 2 + 11, height / 2 + 94, width / 2 + 123, height / 2 + 106, 0, 0, 0, 1.0F);
@@ -1126,7 +1109,7 @@ public class EventListener {
 						}
 					}
 				}
-			} catch (Exception exception) {
+			} catch (Exception ignored) {
 
 			}
 		}
@@ -1200,15 +1183,13 @@ public class EventListener {
 
 					if (Lupin.mc.world.loadedTileEntityList != null) {
 
-						for (Object tileEntity : Lupin.mc.world.loadedTileEntityList) {
+						for (TileEntity tileEntity : Lupin.mc.world.loadedTileEntityList) {
 
 							if (tileEntity != null) {
 
 								if (tileEntity instanceof ChestTileEntity || tileEntity instanceof TrappedChestTileEntity || tileEntity instanceof EnderChestTileEntity) {
 
-									TileEntity storage = (TileEntity)tileEntity;
-
-									ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
+                                    ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
 									Vec3d view = Lupin.mc.gameRenderer.getActiveRenderInfo().getProjectedView();
 
 									RenderSystem.pushMatrix();
@@ -1217,7 +1198,7 @@ public class EventListener {
 									RenderSystem.rotatef(renderInfo.getYaw() + 180, 0, 1, 0);
 									RenderSystem.translated(-view.x, -view.y, -view.z);
 
-									BlockPos b = storage.getPos();
+									BlockPos b = tileEntity.getPos();
 
 									float red = 1.0f;
 									float green = 1.0f;
@@ -1247,41 +1228,37 @@ public class EventListener {
 							}
 						}
 					}
-					if (Lupin.mc.world.getAllEntities() != null) {
+                    Lupin.mc.world.getAllEntities();
+                    for (Entity entity : Lupin.mc.world.getAllEntities()) {
 
-						for (Object entity : Lupin.mc.world.getAllEntities()) {
+                        if (entity != null) {
 
-							if (entity != null) {
+                            if (entity instanceof ChestMinecartEntity) {
 
-								if (entity instanceof ChestMinecartEntity) {
+                                ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
+                                Vec3d view = Lupin.mc.gameRenderer.getActiveRenderInfo().getProjectedView();
 
-									Entity storage = (Entity)entity;
+                                RenderSystem.pushMatrix();
 
-									ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
-									Vec3d view = Lupin.mc.gameRenderer.getActiveRenderInfo().getProjectedView();
+                                RenderSystem.rotatef(renderInfo.getPitch(), 1, 0, 0);
+                                RenderSystem.rotatef(renderInfo.getYaw() + 180, 0, 1, 0);
+                                RenderSystem.translated(-view.x, -view.y, -view.z);
 
-									RenderSystem.pushMatrix();
+                                BlockPos b = entity.getPosition();
 
-									RenderSystem.rotatef(renderInfo.getPitch(), 1, 0, 0);
-									RenderSystem.rotatef(renderInfo.getYaw() + 180, 0, 1, 0);
-									RenderSystem.translated(-view.x, -view.y, -view.z);
+                                float red = 1;
+                                float green = 0.6f;
+                                float blue = 0f;
+                                float alpha = 0.4f;
 
-									BlockPos b = storage.getPosition();
+                                RenderUtil.drawBox(b, red, green, blue, alpha);
 
-									float red = 1;
-									float green = 0.6f;
-									float blue = 0f;
-									float alpha = 0.4f;
-
-									RenderUtil.drawBox(b, red, green, blue, alpha);
-
-									RenderSystem.enableTexture();
-									RenderSystem.popMatrix();
-								}
-							}
-						}
-					}
-				}
+                                RenderSystem.enableTexture();
+                                RenderSystem.popMatrix();
+                            }
+                        }
+                    }
+                }
 				if (Lupin.instance.getModHandler().getModByName("Item ESP").isToggled()) {
 
 					for (Entity entity : Lupin.mc.world.getAllEntities()) {
@@ -1332,7 +1309,7 @@ public class EventListener {
 						RenderSystem.popMatrix();
 					}
 				}
-			} catch (Exception exception) {
+			} catch (Exception ignored) {
 
 			}
 		}
