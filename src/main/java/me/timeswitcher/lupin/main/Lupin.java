@@ -9,7 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod("xaerominimap")
+@Mod("lupin")
 public class Lupin {
 
 	public static final String NAME = "Lupin";
