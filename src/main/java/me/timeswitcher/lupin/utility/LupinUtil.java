@@ -15,11 +15,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class LupinUtil {
 
-	private static boolean loggedIn = false;
-	private final static String URL = "https://pastebin.com/raw/5tk4c3zb";
-
-	private static boolean loginFailed = false;
-	
 	public static final ResourceLocation LUPINLOGO = new ResourceLocation("modid", "lupinlogo.png");
 	
 	private static LupinMainMenuScreen mainMenu = null;
@@ -39,53 +34,6 @@ public class LupinUtil {
 	
 	public static boolean forceopSent = false;
 	public static boolean blockedOppedMessage = false;
-
-	public static void login(final String UID) {
-
-		setLoginFailed(false);
-
-		HttpURLConnection connection = null;
-
-		try {
-
-			connection = WebUtil.openConnection(URL);
-			final String response = WebUtil.buildResponse(connection.getInputStream());
-
-			if (response.contains(UID + ":" + HwidUtil.getHWID())) {
-				LupinUser.setUID(UID);
-				LupinUtil.setLoggedIn(true);
-				Lupin.mc.displayGuiScreen(new MainMenuScreen());
-
-			} else {
-
-				setLoginFailed(true);
-			}
-
-		} catch (final IOException e) {
-
-		} finally {
-			if (connection != null) {
-				connection.disconnect();
-
-			}
-		}
-	}
-	
-	public static boolean isLoggedIn() {
-		return loggedIn;
-	}
-
-	public static void setLoggedIn(boolean loggedIn) {
-		LupinUtil.loggedIn = loggedIn;
-	}
-
-	public static boolean isLoginFailed() {
-		return loginFailed;
-	}
-
-	public static void setLoginFailed(boolean loginFailed) {
-		LupinUtil.loginFailed = loginFailed;
-	}
 	
 	public static LupinMainMenuScreen getMainMenu() {
 		return mainMenu;

@@ -28,7 +28,6 @@ import me.timeswitcher.lupin.mods.Wallhax;
 import me.timeswitcher.lupin.renderings.Cape;
 import me.timeswitcher.lupin.renderings.Deadmau5;
 import me.timeswitcher.lupin.screens.LupinClickGuiScreen;
-import me.timeswitcher.lupin.screens.LupinLoginScreen;
 import me.timeswitcher.lupin.screens.LupinMainMenuScreen;
 import me.timeswitcher.lupin.screens.LupinMultiplayerMenuScreen;
 import me.timeswitcher.lupin.utility.LupinUtil;
@@ -90,6 +89,8 @@ public class EventListener {
 
 	private boolean say = false;
 
+	private static boolean fontsInitialized = false;
+
 	@SubscribeEvent
 	public void openGui(GuiOpenEvent e) {
 
@@ -97,7 +98,10 @@ public class EventListener {
 
 			e.setCanceled(true);
 
-			if (LupinUtil.isLoggedIn()) {
+			if (!fontsInitialized) {
+				fontsInitialized = true;
+				Lupin.instance.getFontManager().init();
+			}
 
 				if (LupinUtil.getMainMenu() == null) {
 					LupinUtil.setMainMenu(new LupinMainMenuScreen());
@@ -105,12 +109,6 @@ public class EventListener {
 				if (LupinUtil.getMainMenu() != null) {
 					Lupin.mc.displayGuiScreen(LupinUtil.getMainMenu());
 				}
-			} else {
-
-				Lupin.instance.getFontManager().init(); //register all fonts here because it works and putting something else up would take time
-
-				Lupin.mc.displayGuiScreen(new LupinLoginScreen());
-			}
 		}
 		if (e.getGui() instanceof MultiplayerScreen) {
 			e.setCanceled(true);

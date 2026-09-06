@@ -23,7 +23,7 @@ public class GameUtil {
 	}
 
 	public static boolean isGameNull() {
-		return Lupin.mc == null || Lupin.mc.world == null || Lupin.mc.player == null || Lupin.mc.player.world == null || !LupinUtil.isLoggedIn();
+		return Lupin.mc == null || Lupin.mc.world == null || Lupin.mc.player == null || Lupin.mc.player.world == null;
 	}
 
 	public static boolean isRenderNull() {
