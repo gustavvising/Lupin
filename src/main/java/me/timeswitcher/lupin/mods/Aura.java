@@ -15,103 +15,203 @@ import net.minecraft.entity.LivingEntity;
 
 public class Aura extends Mod {
 
-	private final Slider REACH = new Slider("Reach", 50.0f, 0.0f, 100.0f, 6.0f, false);
-	private final Slider APS = new Slider("APS", 50.0f, 0.0f, 100.0f, 20.0f, true);
-	private final Slider TARGETCHANGE_DELAY = new Slider("Targetchange delay", 10.0f, 0.0f, 100.0f, 500.0f, true);
+	private final Slider reach = new Slider(
+			"Reach",
+			50.0f,
+			0.0f,
+			100.0f,
+			6.0f,
+			false
+	);
 
-	private final CheckBox COOLDOWN = new CheckBox("1.9+ Cooldown", true);
-	private final CheckBox NO_SWING = new CheckBox("No Swing", false);
-	private final CheckBox CRITICAL = new CheckBox("Critical", true);
-	private final CheckBox IN_GUI = new CheckBox("In Gui", false);
+	private final Slider aps = new Slider(
+			"APS",
+			50.0f,
+			0.0f,
+			100.0f,
+			20.0f,
+			true
+	);
+
+	private final Slider targetChangeDelay = new Slider(
+			"Target change delay",
+			10.0f,
+			0.0f,
+			100.0f,
+			500.0f,
+			true
+	);
+
+	private final CheckBox cooldown = new CheckBox(
+			"1.9+ Cooldown",
+			true
+	);
+
+	private final CheckBox noSwing = new CheckBox(
+			"No Swing",
+			false
+	);
+
+	private final CheckBox critical = new CheckBox(
+			"Critical",
+			true
+	);
+
+	private final CheckBox inGui = new CheckBox(
+			"In Gui",
+			false
+	);
 
 	public static LivingEntity target = null;
 
-	private final Time ATTACK_TIMER = new Time();
-	private final Time ROT_TIMER = new Time();
-	private final Time TARGETCHANGE_TIMER = new Time();
-
-	public static int noSwings;
+	private final Time attackTimer = new Time();
+	private final Time targetChangeTimer = new Time();
 
 	public Aura(String name) {
-		super(name, Category.COMBAT, GLFW.GLFW_KEY_R, "Automatically attacks entities around you.");
-		this.getSliders().add(REACH);
-		this.getSliders().add(APS);
-		this.getSliders().add(TARGETCHANGE_DELAY);
-		this.getCheckBoxes().add(COOLDOWN);
-		this.getCheckBoxes().add(NO_SWING);
-		this.getCheckBoxes().add(CRITICAL);
-		this.getCheckBoxes().add(IN_GUI);
+		super(
+				name,
+				Category.COMBAT,
+				GLFW.GLFW_KEY_R,
+				"Automatically attacks entities around you."
+		);
+
+		getSliders().add(reach);
+		getSliders().add(aps);
+		getSliders().add(targetChangeDelay);
+
+		getCheckBoxes().add(cooldown);
+		getCheckBoxes().add(noSwing);
+		getCheckBoxes().add(critical);
+		getCheckBoxes().add(inGui);
+	}
+
+	@Override
+	public void onEnable() {
+		target = null;
+
+		attackTimer.reset();
+		targetChangeTimer.reset();
 	}
 
 	@Override
 	public void onDisable() {
 		target = null;
+
+		attackTimer.reset();
+		targetChangeTimer.reset();
 	}
 
 	@Override
 	public void onUpdate() {
 
-		if (ModsUtil.canAura()) {
+		if (!ModsUtil.canAura()) {
+			return;
+		}
 
-			if (IN_GUI.isChecked() || mc.currentScreen == null) {
+		if (!inGui.isChecked() && mc.currentScreen != null) {
+			return;
+		}
 
-				try  {
+		if (target == null || !EntityUtil.isEntityValid(target)) {
+			findTarget();
+		}
 
-					if (target == null) {
+		if (target == null) {
+			return;
+		}
 
-						if (TARGETCHANGE_TIMER.isDelayComplete(TARGETCHANGE_DELAY.getReturnValue())) {
+		if (!EntityUtil.isEntityValid(target)) {
+			target = null;
+			return;
+		}
 
-							target = EntityUtil.getEntityInRange(REACH.getReturnValue());
+		if (mc.player.getDistance(target) > reach.getReturnValue()) {
+			target = null;
+			return;
+		}
 
-							TARGETCHANGE_TIMER.reset();
-						}
-					}
-					if (target != null) {
+		faceTarget();
 
-						if (EntityUtil.isEntityValid(target)) {
+		if (!isFacingTarget()) {
+			return;
+		}
 
-							if (ROT_TIMER.isDelayComplete(50.0f)) {
-								RotationUtil.faceEntity(target);
-								ROT_TIMER.reset();
-							}
+		if (!canAttack()) {
+			return;
+		}
 
-							if (COOLDOWN.isChecked() ? mc.player.getCooledAttackStrength(0.0F) == 1.0F : ATTACK_TIMER.isDelayComplete(1000 / APS.getReturnValue())) {
+		attack();
+	}
 
-								if (mc.player.getDistance(target) <= REACH.getReturnValue()) {
+	private void findTarget() {
 
-									if (EntityUtil.isEntityValid(target) && target != null) {
+		if (!targetChangeTimer.isDelayComplete(
+				targetChangeDelay.getReturnValue())) {
+			return;
+		}
 
-										if (RotationUtil.packetLookingAt(target)) {
+		target = EntityUtil.getEntityInRange(reach.getReturnValue());
 
-											if (CRITICAL.isChecked()) {
+		targetChangeTimer.reset();
+	}
 
-												if (ModsUtil.canCheatCrit()) {
-													PlayerUtil.crit();
-												}
-											}
-											PlayerUtil.hit(target, NO_SWING.isChecked());
-											ATTACK_TIMER.reset();
-										}
+	private void faceTarget() {
 
-									} else {
+		float[] rotations = RotationUtil.getRotation(target);
+		float yawDifference = rotations[0] - mc.player.rotationYaw;
 
-										target = null;
-									}
-								} else {
-
-									target = null;
-								}
-							}
-						} else {
-
-							target = null;
-						}
-					}
-				} catch (Exception ignored) {
-
-				}
-			}
+		if (yawDifference < -10.0F || yawDifference > 10.0F) {
+			RotationUtil.faceEntity(target);
 		}
 	}
 
+	private boolean isFacingTarget() {
+
+		float[] rotations = RotationUtil.getRotation(target);
+		float yawDifference = rotations[0] - mc.player.rotationYaw;
+
+		return yawDifference >= -10.0F && yawDifference <= 10.0F;
+	}
+
+	private boolean canAttack() {
+
+		if (cooldown.isChecked()) {
+			return mc.player.getCooledAttackStrength(0.0F) >= 1.0F;
+		}
+
+		float attacksPerSecond = aps.getReturnValue();
+
+		if (attacksPerSecond <= 0.0F) {
+			return false;
+		}
+
+		float delay = 1000.0F / attacksPerSecond + 20.0F;
+
+		return attackTimer.isDelayComplete(delay);
+	}
+
+	private void attack() {
+
+		if (target == null) {
+			return;
+		}
+
+		if (!EntityUtil.isEntityValid(target)) {
+			target = null;
+			return;
+		}
+
+		if (mc.player.getDistance(target) > reach.getReturnValue()) {
+			target = null;
+			return;
+		}
+
+		if (critical.isChecked() && ModsUtil.canCheatCrit()) {
+			PlayerUtil.crit();
+		}
+
+		PlayerUtil.hit(target, noSwing.isChecked());
+
+		attackTimer.reset();
+	}
 }

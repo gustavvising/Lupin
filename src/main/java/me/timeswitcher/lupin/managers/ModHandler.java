@@ -40,6 +40,7 @@ import me.timeswitcher.lupin.mods.Twerk;
 import me.timeswitcher.lupin.mods.Me;
 import me.timeswitcher.lupin.mods.VClip;
 import me.timeswitcher.lupin.mods.AntiKB;
+import me.timeswitcher.lupin.mods.SkinBlinker;
 
 public class ModHandler {
 
@@ -82,6 +83,7 @@ public class ModHandler {
 		addModToModList(new Brightness("Brightness"));
 		addModToModList(new NoSlowdown("No Slowdown"));
 		addModToModList(new HandSwitch("Hand Switch"));
+		addModToModList(new SkinBlinker("Skin Blinker"));
 		addModToModList(new NoScoreboard("No Scoreboard"));
 		addModToModList(new ChestStealer("Chest Stealer"));
 	}

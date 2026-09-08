@@ -147,9 +147,6 @@ public class EventListener {
 		if (Lupin.instance.getModHandler().getModByName("TP Aura").isToggled()) {
 			Lupin.instance.getModHandler().getModByName("TP Aura").toggleMod();
 		}
-		if (Lupin.instance.getModHandler().getModByName("Crasher").isToggled()) {
-			Lupin.instance.getModHandler().getModByName("Crasher").toggleMod();
-		}
 		if (Lupin.instance.getModHandler().getModByName("Chest Stealer").isToggled()) {
 			Lupin.instance.getModHandler().getModByName("Chest Stealer").toggleMod();
 		}
@@ -886,7 +883,7 @@ public class EventListener {
 
 					try {
 
-						if (Aura.target instanceof LivingEntity && GameUtil.isFullScreen() && EntityUtil.showTargetInfo.isChecked()) {
+						if (GameUtil.isFullScreen() && EntityUtil.showTargetInfo.isChecked()) {
 
 							float entityHealth = Aura.target.getHealth();
 							float maxHealth = Aura.target.getMaxHealth();
@@ -935,7 +932,7 @@ public class EventListener {
 
 					try {
 
-						if (TPAura.target instanceof LivingEntity && GameUtil.isFullScreen() && EntityUtil.showTargetInfo.isChecked()) {
+						if (GameUtil.isFullScreen() && EntityUtil.showTargetInfo.isChecked()) {
 
 							float entityHealth = TPAura.target.getHealth();
 							float maxHealth = TPAura.target.getMaxHealth();

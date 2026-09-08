@@ -1,99 +1,93 @@
 package me.timeswitcher.lupin.utility;
 
-import java.util.Random;
-
 import me.timeswitcher.lupin.main.Lupin;
 import net.minecraft.entity.Entity;
-import net.minecraft.network.play.client.CPlayerPacket;
 import net.minecraft.network.play.client.CPlayerPacket.RotationPacket;
 import net.minecraft.util.math.MathHelper;
 
 public class RotationUtil {
 
-	public static float packetYaw = 1337;
-	public static float packetPitch = 1337;
-	
-	private final static Random R = new Random();
+	private static final float maxYawChange = 15.0F;
+
+	public static float packetYaw = 0.0F;
+	public static float packetPitch = 0.0F;
+
+	private static boolean initialized = false;
 
 	public synchronized static void faceEntity(Entity entity) {
-		float[] rotations = getRotation(entity);
-        if (packetYaw == 1337) {
-            packetYaw = Lupin.mc.player.rotationYaw;
-        }
-        if (packetPitch == 1337) {
-            packetPitch = Lupin.mc.player.rotationPitch;
-        }
-        float rotationSpeed = calcAngleDistance(entity);
-        packetYaw = limitAngleChange(packetYaw, rotations[0], rotationSpeed / 200);
-        packetPitch = rotations[1];
-
-        Lupin.mc.player.rotationYaw = packetYaw;
-        Lupin.mc.player.rotationYawHead = packetYaw;
-        Lupin.mc.player.rotationPitch = packetPitch;
-
-        PlayerUtil.sendPacket(new RotationPacket(packetYaw, packetPitch, Lupin.mc.player.onGround));
-    }
-
-	private final static float limitAngleChange(final float current, final float intended, final float maxChange)
-	{
-		float change = intended - current;
-
-		if(change > maxChange)
-		{
-			change = maxChange;
-		} else if(change < -maxChange)
-		{
-			change = -maxChange;
+		if (entity == null || Lupin.mc.player == null) {
+			return;
 		}
+
+		if (!initialized) {
+			packetYaw = Lupin.mc.player.rotationYaw;
+			packetPitch = Lupin.mc.player.rotationPitch;
+			initialized = true;
+		}
+
+		float[] rotations = getRotation(entity);
+
+		packetYaw = limitAngleChange(packetYaw, rotations[0]);
+		packetPitch = MathHelper.clamp(rotations[1], -90.0F, 90.0F);
+
+		Lupin.mc.player.rotationYaw = packetYaw;
+		Lupin.mc.player.rotationYawHead = packetYaw;
+		Lupin.mc.player.rotationPitch = packetPitch;
+
+		PlayerUtil.sendPacket(
+				new RotationPacket(
+						packetYaw,
+						packetPitch,
+						Lupin.mc.player.onGround
+				)
+		);
+	}
+
+	private static float limitAngleChange(float current, float intended) {
+		float change = MathHelper.wrapDegrees(intended - current);
+		change = MathHelper.clamp(change, -RotationUtil.maxYawChange, RotationUtil.maxYawChange);
 		return current + change;
 	}
 
-	public static float[] getRotationsNeeded(Entity entity)
-	{
-		if (entity == null)
-			return null;
+	public static float[] getRotation(Entity entity) {
+		if (entity == null || Lupin.mc.player == null) {
+			return new float[] {
+					packetYaw,
+					packetPitch
+			};
+		}
 
-		double diffX = PlayerUtil.posX(entity) - PlayerUtil.posX();
-		double diffY = (entity.getBoundingBox().minY + entity.getBoundingBox().maxY) / (1.75D + R.nextFloat()) - (PlayerUtil.posY() + Lupin.mc.player.getEyeHeight());;
-		double diffZ = PlayerUtil.posZ(entity) - PlayerUtil.posZ();
+		double x = PlayerUtil.posX(entity) - PlayerUtil.posX();
+		double y = ((entity.getBoundingBox().minY + entity.getBoundingBox().maxY) * 0.5D)
+				- (PlayerUtil.posY() + Lupin.mc.player.getEyeHeight());
+		double z = PlayerUtil.posZ(entity) - PlayerUtil.posZ();
 
-		double dist = MathHelper.sqrt(diffX * diffX + diffZ * diffZ);
+		double horizontalDistance = Math.sqrt(x * x + z * z);
 
-		float yaw = (float)(Math.atan2(diffZ, diffX) * 180.0D / Math.PI) - 90.0F;
-		float pitch = (float)-(Math.atan2(diffY, dist) * 180.0D / Math.PI);
+		if (horizontalDistance < 1.0E-4D) {
+			horizontalDistance = 1.0E-4D;
+		}
 
-		return new float[] {Lupin.mc.player.rotationYaw + MathHelper.wrapDegrees((yaw - Lupin.mc.player.rotationYaw)), Lupin.mc.player.rotationPitch + MathHelper.wrapDegrees((pitch - Lupin.mc.player.rotationPitch))};
-	}
-	
-	public static boolean packetLookingAt(Entity entity) {
-		float distance = calcAngleDistance(entity);
-		System.out.println(distance);
-		return !(distance > 20) && !(distance < -20);
-	}
-	
-	private static float calcAngleDistance(Entity entity) {
-		return entity.rotationYaw - packetYaw;
-	}
+		float yaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
+		float pitch = (float) -(Math.atan2(y, horizontalDistance) * 180.0D / Math.PI);
 
-	public static void lookAtEntity(Entity e) {
-		float yaw = getRotation(e)[0];
-		float pitch = getRotation(e)[1];
-		PlayerUtil.sendPacket(new RotationPacket(yaw, pitch, Lupin.mc.player.onGround));
-	}
+		yaw = Lupin.mc.player.rotationYaw
+				+ MathHelper.wrapDegrees(yaw - Lupin.mc.player.rotationYaw);
 
-	private static float[] getRotation(Entity e) {
-		double x = PlayerUtil.posX(e) - PlayerUtil.posX();
-		double y = PlayerUtil.posX(e) - PlayerUtil.posY();
-		double z = PlayerUtil.posZ(e) - PlayerUtil.posZ();
+		pitch = Lupin.mc.player.rotationPitch
+				+ MathHelper.wrapDegrees(pitch - Lupin.mc.player.rotationPitch);
 
-		double len = Math.sqrt(x * x + y * y + z * z);
+		pitch = MathHelper.clamp(pitch, -90.0F, 90.0F);
 
-		y /= len;
-
-		float f = (float)(Math.atan2(z, x) * 180.0D / Math.PI) + 90.0F;
-		float f1 = (float)-(Math.atan2(y, len) * 180.0D / Math.PI);
-
-		return new float[] {Lupin.mc.player.rotationYaw + MathHelper.wrapDegrees((f - Lupin.mc.player.rotationYaw)), Lupin.mc.player.rotationPitch + MathHelper.wrapDegrees((f1 - Lupin.mc.player.rotationPitch))};
+		return new float[] {
+				yaw,
+				pitch
+		};
 	}
 
+	public static void reset() {
+		packetYaw = 0.0F;
+		packetPitch = 0.0F;
+		initialized = false;
+	}
 }
