@@ -1,7 +1,14 @@
 # Lupin
 
 Lupin is a Minecraft Forge mod that brings utilities that normal Minecraft does not allow. With a range of modules, such as speed that makes you much faster,
-visualization modifications that renders entities health and twerk that makes you shake. While working on it, I researched anticheat systems, specifically targeting Spartan anticheat, and worked with the developer to identify bypasses and help mitigate them.
+visualization modifications that renders entities health and twerk that makes you shake.
+
+## Installation
+
+1. Install **Minecraft 1.15.2** with **Forge**.
+2. Download the latest mod `.jar` from the [Releases](../../releases) page.
+3. Place the `.jar` file into your Minecraft `mods` folder.
+4. Launch Minecraft using the **Forge 1.15.2** profile.
 
 ## Development
 
@@ -16,7 +23,7 @@ cd Lupin
 ### Build
 ./gradlew build
 
-Output: \build\libs\Lupin.jar
+Output is saved to: \build\libs\Lupin.jar
 
 ## Screenshots
 
