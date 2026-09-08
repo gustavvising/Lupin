@@ -1,6 +1,5 @@
 package me.timeswitcher.lupin.main;
 
-import me.timeswitcher.lupin.managers.AccessManager;
 import me.timeswitcher.lupin.managers.AltManager;
 import me.timeswitcher.lupin.managers.EventListener;
 import me.timeswitcher.lupin.managers.FontManager;
@@ -23,7 +22,6 @@ public class Lupin {
 	private final EventListener eventListener = new EventListener();
 	private final ModHandler modHandler = new ModHandler();
 	private final AltManager altManager = new AltManager();
-	private final AccessManager accessManager = new AccessManager();
 	private final FontManager fontManager = new FontManager();
 	
 	public Lupin() {
@@ -42,10 +40,6 @@ public class Lupin {
 
 	public AltManager getAltManager() {
 		return altManager;
-	}
-
-	public AccessManager getAccessManager() {
-		return accessManager;
 	}
 
 	public FontManager getFontManager() {

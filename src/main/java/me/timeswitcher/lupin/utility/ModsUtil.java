@@ -74,13 +74,13 @@ public class ModsUtil {
 	
 	public static void setTimerSpeed(float speed) {
 
-		if (Lupin.instance.getAccessManager().isSRG()) {
+		if (AccessUtil.isSRG()) {
 
-			Lupin.instance.getAccessManager().applyTimerSpeed(speed);
+			AccessUtil.applyTimerSpeed(speed);
 
 		} else {
 
-			Lupin.instance.getAccessManager().applyTimerSpeedSRG(speed);
+			AccessUtil.applyTimerSpeedSRG(speed);
 		}
 	}
 
@@ -88,13 +88,13 @@ public class ModsUtil {
 
 		float speed = 50.0F;
 
-		if (Lupin.instance.getAccessManager().isSRG()) {
+		if (AccessUtil.isSRG()) {
 
-			Lupin.instance.getAccessManager().applyTimerSpeed(speed);
+			AccessUtil.applyTimerSpeed(speed);
 
 		} else {
 
-			Lupin.instance.getAccessManager().applyTimerSpeedSRG(speed);
+			AccessUtil.applyTimerSpeedSRG(speed);
 		}
 	}
 
