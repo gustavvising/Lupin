@@ -39,6 +39,7 @@ import me.timeswitcher.lupin.mods.Me;
 import me.timeswitcher.lupin.mods.VClip;
 import me.timeswitcher.lupin.mods.AntiKB;
 import me.timeswitcher.lupin.mods.SkinBlinker;
+import me.timeswitcher.lupin.mods.Strafe;
 
 public class ModHandler {
 
@@ -57,6 +58,7 @@ public class ModHandler {
 		addModToModList(new Twerk("Twerk"));
 		addModToModList(new Trail("Trail"));
 		addModToModList(new Speed("Speed"));
+		addModToModList(new Strafe("Strafe"));
 		addModToModList(new Sprint("Sprint"));
 		addModToModList(new TPAura("TP Aura"));
 		addModToModList(new AntiKB("Anti KB"));
