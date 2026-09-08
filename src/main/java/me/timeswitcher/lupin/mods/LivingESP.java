@@ -13,22 +13,22 @@ import net.minecraft.entity.LivingEntity;
 
 public class LivingESP extends Mod {
 
-	public static final Mode LINES = new Mode("Lines");
-	public static final Mode BOX = new Mode("Box");
-	public static final Mode GLOW = new Mode("Glow");
+	public static final Mode lines = new Mode("Lines");
+	public static final Mode box = new Mode("Box");
+	public static final Mode glow = new Mode("Glow");
 
-	public static final CheckBox ONLY_PLAYERS = new CheckBox("Only Players", false);
+	public static final CheckBox onlyPlayers = new CheckBox("Only Players", false);
 
 	public static boolean addedGlow;
 	public static ArrayList<LivingEntity> glowingEntities = new ArrayList<LivingEntity>();
 
 	public LivingESP(String name) {
 		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Render lines around entities.");
-		this.setCurrentMode(LINES);
-		this.getModes().add(LINES);
-		this.getModes().add(BOX);
-		this.getModes().add(GLOW);
-		this.getCheckBoxes().add(ONLY_PLAYERS);
+		this.setCurrentMode(lines);
+		this.getModes().add(lines);
+		this.getModes().add(box);
+		this.getModes().add(glow);
+		this.getCheckBoxes().add(onlyPlayers);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class LivingESP extends Mod {
 
 		if (addedGlow) {
 
-			if (!this.getCurrentMode().equals(GLOW)) {
+			if (!this.getCurrentMode().equals(glow)) {
 
 				if (!glowingEntities.isEmpty()) {
 

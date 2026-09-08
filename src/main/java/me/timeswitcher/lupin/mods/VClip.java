@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class VClip extends Mod {
 
-	private final int MAX_DISTANCE = 9;
+	private final int maxDistance = 9;
 
 	private boolean jump = false;
 	private boolean sneak = false;
@@ -59,7 +59,7 @@ public class VClip extends Mod {
 
 		BlockPos pos = new BlockPos(PlayerUtil.posX(), PlayerUtil.posY() + 2, PlayerUtil.posZ());
 
-		for (int i = 0; i < (MAX_DISTANCE - 1); i++) {
+		for (int i = 0; i < (maxDistance - 1); i++) {
 
 			Block block = mc.world.getBlockState(pos).getBlock();
 
@@ -80,11 +80,11 @@ public class VClip extends Mod {
 		return false;
 	}
 
-	private boolean DOWN(boolean checkOnly) {
+	private boolean down(boolean checkOnly) {
 
 		BlockPos pos = new BlockPos(PlayerUtil.posX(), PlayerUtil.posY() - 2, PlayerUtil.posZ());
 
-		for (int i = 0; i < (MAX_DISTANCE - 1); i++) {
+		for (int i = 0; i < (maxDistance - 1); i++) {
 
 			Block block = mc.world.getBlockState(pos).getBlock();
 
@@ -119,7 +119,7 @@ public class VClip extends Mod {
 				up = 0;
 			}
 			if (!sneak && !normalSneak && !jump && mc.player.onGround) {
-				down = DOWN(true) ? down : 0;
+				down = down(true) ? down : 0;
 				if (down == 1) {	
 					down = 0;
 				}
@@ -153,7 +153,7 @@ public class VClip extends Mod {
 
 				if (mc.player.onGround) {
 
-					if (DOWN(false)) {
+					if (down(false)) {
 						if (y > 1) {
 							GameUtil.setKey(mc.gameSettings.keyBindSneak, false);
 							mc.player.movementInput.sneaking = false;

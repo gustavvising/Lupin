@@ -39,51 +39,51 @@ public class NoSlowdown extends Mod {
 	
 	public static void noSlowdown() {
 
-		final float SPEED = 1.0F;
-		final float SNEAKSPEED = 0.3F;
+		float speed = 1.0F;
+		float sneakSpeed = 0.3F;
 
 		if (GameUtil.isKeyDown(mc.gameSettings.keyBindForward)) {
 
 			if (mc.player.isCrouching() || mc.player.movementInput.sneaking) {
 
-				mc.player.movementInput.moveForward = SNEAKSPEED;
+				mc.player.movementInput.moveForward = sneakSpeed;
 
 			} else {
 
-				mc.player.movementInput.moveForward = SPEED;
+				mc.player.movementInput.moveForward = speed;
 			}
 		}
 		if (GameUtil.isKeyDown(mc.gameSettings.keyBindBack)) {
 
 			if (mc.player.isCrouching() || mc.player.movementInput.sneaking) {
 
-				mc.player.movementInput.moveForward = -SNEAKSPEED;
+				mc.player.movementInput.moveForward = -sneakSpeed;
 
 			} else {
 
-				mc.player.movementInput.moveForward = -SPEED;
+				mc.player.movementInput.moveForward = -speed;
 			}
 		}
 		if (GameUtil.isKeyDown(mc.gameSettings.keyBindLeft)) {
 
 			if (mc.player.isCrouching() || mc.player.movementInput.sneaking) {
 
-				mc.player.movementInput.moveStrafe = SNEAKSPEED;
+				mc.player.movementInput.moveStrafe = sneakSpeed;
 
 			} else {
 
-				mc.player.movementInput.moveStrafe = SPEED;
+				mc.player.movementInput.moveStrafe = speed;
 			}
 		}
 		if (GameUtil.isKeyDown(mc.gameSettings.keyBindRight)) {
 
 			if (mc.player.isCrouching() || mc.player.movementInput.sneaking) {
 
-				mc.player.movementInput.moveStrafe = -SNEAKSPEED;
+				mc.player.movementInput.moveStrafe = -sneakSpeed;
 
 			} else {
 
-				mc.player.movementInput.moveStrafe = -SPEED;
+				mc.player.movementInput.moveStrafe = -speed;
 			}
 		}
 	}

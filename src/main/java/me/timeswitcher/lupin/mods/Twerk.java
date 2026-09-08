@@ -11,13 +11,13 @@ import me.timeswitcher.lupin.utility.Time;
 
 public class Twerk extends Mod {
 
-	private final Time TWERK_TIMER = new Time();
+	private final Time twerkTimer = new Time();
 
-	private final Slider DELAY = new Slider("Twerk Delay", 50.0f, 1.0f, 100.0f, 500.0f, true);
+	private final Slider delay = new Slider("Twerk Delay", 50.0f, 1.0f, 100.0f, 500.0f, true);
 
 	public Twerk(String name) {
 		super(name, Category.PLAYER, GLFW.GLFW_KEY_UNKNOWN, "Shake it.");
-		this.getSliders().add(DELAY);
+		this.getSliders().add(delay);
 	}
 
 	@Override
@@ -30,9 +30,9 @@ public class Twerk extends Mod {
 
 		if (ModsUtil.canTwerk()) {
 
-			if (TWERK_TIMER.isDelayComplete(DELAY.getReturnValue())) {
+			if (twerkTimer.isDelayComplete(delay.getReturnValue())) {
 				GameUtil.setKey(mc.gameSettings.keyBindSneak, mc.player.movementInput.sneaking ? false : true);
-				TWERK_TIMER.reset();
+				twerkTimer.reset();
 			}
 		}
 	}

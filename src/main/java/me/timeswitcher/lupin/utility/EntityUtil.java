@@ -99,7 +99,7 @@ public class EntityUtil {
 	}
 
 	public static boolean isEntityValidESP(Entity entity) {
-		return entity.isLiving() && (!LivingESP.ONLY_PLAYERS.isChecked() || entity instanceof PlayerEntity) && !(entity instanceof ArmorStandEntity) && !(entity instanceof ClientPlayerEntity) && entity.isAlive();
+		return entity.isLiving() && (!LivingESP.onlyPlayers.isChecked() || entity instanceof PlayerEntity) && !(entity instanceof ArmorStandEntity) && !(entity instanceof ClientPlayerEntity) && entity.isAlive();
 	}
 
 }

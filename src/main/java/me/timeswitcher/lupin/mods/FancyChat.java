@@ -7,10 +7,8 @@ import me.timeswitcher.lupin.mod.Mod;
 
 public class FancyChat extends Mod {
 
-	public final static String BLACKLIST = "(){}[]|";
-
-	public FancyChat(String name) {
-		super(name, Category.EXTRA, GLFW.GLFW_KEY_UNKNOWN, "Replaces you're chat message letters with unicode characters.");
+    public FancyChat(String name) {
+		super(name, Category.EXTRA, GLFW.GLFW_KEY_UNKNOWN, "Replaces your chat letters with unicode characters.");
 	}
 	
 	public static String convertStringFancyChat(String input) {
@@ -25,7 +23,8 @@ public class FancyChat extends Mod {
 		if (c < 0x21 || c > 0x80)
 			return "" + c;
 
-		if (FancyChat.BLACKLIST.contains(Character.toString(c)))
+        String blacklist = "(){}[]|";
+        if (blacklist.contains(Character.toString(c)))
 			return "" + c;
 
 		return new String(Character.toChars(c + 0xfee0));

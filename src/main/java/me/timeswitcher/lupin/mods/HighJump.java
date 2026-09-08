@@ -12,7 +12,7 @@ import me.timeswitcher.lupin.utility.Time;
 public class HighJump extends Mod {
 
 	public static boolean jumped = false;
-	public static final Time GROUND_TIMER = new Time();
+	public static final Time groundTimer = new Time();
 
 	public HighJump(String name) {
 		super(name, Category.MOVE, GLFW.GLFW_KEY_H, "Makes you jump high.");
@@ -30,7 +30,7 @@ public class HighJump extends Mod {
 	public void onUpdate() {
 		
 		if (!mc.player.onGround) {
-			GROUND_TIMER.reset();
+			groundTimer.reset();
 		}
 
 		if (!Lupin.instance.getModHandler().getModByName("Fly").isToggled()) {

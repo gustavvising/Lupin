@@ -11,7 +11,7 @@ import net.minecraft.particles.ParticleTypes;
 
 public class Trail extends Mod {
 
-	private final Time TRAIL_TIMER = new Time();
+	private final Time trailTimer = new Time();
 
 	public Trail(String name) {
 		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Draw particles behind the player when moving.");
@@ -22,7 +22,7 @@ public class Trail extends Mod {
 
 		if (!GameUtil.isRenderNull()) {
 
-			if (PlayerUtil.isMovementInputMoving() && TRAIL_TIMER.isDelayComplete(75.0f)) {
+			if (PlayerUtil.isMovementInputMoving() && trailTimer.isDelayComplete(75.0f)) {
 
 				boolean addition;
 
@@ -41,7 +41,7 @@ public class Trail extends Mod {
 
 					mc.world.addParticle(ParticleTypes.END_ROD, x, PlayerUtil.posY() + 1.0d, z, addition ? R.nextDouble() : -R.nextDouble(), R.nextDouble(), addition ? R.nextDouble() : -R.nextDouble());
 				}
-				TRAIL_TIMER.reset();
+				trailTimer.reset();
 			}
 		}
 	}

@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class HandSwitch extends Mod {
 
-	private final Time HANDSWITCH_TIMER = new Time();
+	private final Time handswitchTimer = new Time();
 
 	private Hand orginalHand;
 	private HandSide orginalHandSide;
@@ -43,7 +43,7 @@ public class HandSwitch extends Mod {
 
 					PlayerUtil.sendPacket(new CPlayerDiggingPacket(CPlayerDiggingPacket.Action.SWAP_HELD_ITEMS, BlockPos.ZERO, Direction.DOWN));
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 
 			}
 		}
@@ -56,7 +56,7 @@ public class HandSwitch extends Mod {
 
 			try {
 
-				if (HANDSWITCH_TIMER.isDelayComplete(20.0F)) {
+				if (handswitchTimer.isDelayComplete(20.0F)) {
 
 					HandSide oppositeHandSide;
 
@@ -71,9 +71,9 @@ public class HandSwitch extends Mod {
 					mc.player.setPrimaryHand(oppositeHandSide);
 					PlayerUtil.sendPacket(new CPlayerDiggingPacket(CPlayerDiggingPacket.Action.SWAP_HELD_ITEMS, BlockPos.ZERO, Direction.DOWN));
 
-					HANDSWITCH_TIMER.reset();
+					handswitchTimer.reset();
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 
 			}
 		}

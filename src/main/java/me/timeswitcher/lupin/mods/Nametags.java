@@ -9,16 +9,16 @@ import me.timeswitcher.lupin.mod.Slider;
 
 public class Nametags extends Mod {
 
-	public static final Slider SIZE = new Slider("Size", 25.0f, 0.0f, 100.0f, 10.0f, false);
+	public static final Slider size = new Slider("Size", 25.0f, 0.0f, 100.0f, 10.0f, false);
 
-	public static final CheckBox ONLY_PLAYERS = new CheckBox("Only Players", false);
-	public static final CheckBox HEALTH = new CheckBox("Health", true);
+	public static final CheckBox onlyPlayers = new CheckBox("Only Players", false);
+	public static final CheckBox health = new CheckBox("Health", true);
 
 	public Nametags(String name) {
-		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Encanched nametags with health display and custom size.");
-		this.getSliders().add(SIZE);
-		this.getCheckBoxes().add(ONLY_PLAYERS);
-		this.getCheckBoxes().add(HEALTH);
+		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Enhanced nametags with health display and custom size.");
+		this.getSliders().add(size);
+		this.getCheckBoxes().add(onlyPlayers);
+		this.getCheckBoxes().add(health);
 	}
 
 }

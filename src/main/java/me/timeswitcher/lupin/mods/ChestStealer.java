@@ -12,7 +12,7 @@ import net.minecraft.inventory.container.ClickType;
 
 public class ChestStealer extends Mod {
 
-	private final Time CHEST_TIMER = new Time();
+	private final Time chestTimer = new Time();
 	private int slotId;
 
 	public ChestStealer(String name) {
@@ -28,7 +28,7 @@ public class ChestStealer extends Mod {
 			if (c.getLowerChestInventory().isEmpty()) {
 				slotId = 0;
 				mc.player.closeScreen();
-				CHEST_TIMER.reset();
+				chestTimer.reset();
 			}
 			if (c.getLowerChestInventory().getStackInSlot(slotId).isEmpty()) {
 				slotId += 1;
@@ -45,14 +45,14 @@ public class ChestStealer extends Mod {
 					slotId = 0;
 				}
 			}
-			if (CHEST_TIMER.isDelayComplete(MathUtil.getRandomInt(64, 68) + R.nextFloat() + R.nextFloat())) {
+			if (chestTimer.isDelayComplete(MathUtil.getRandomInt(64, 68) + R.nextFloat() + R.nextFloat())) {
 				mc.playerController.windowClick(c.windowId, slotId, R.nextBoolean() ? 0 : 1, ClickType.QUICK_MOVE, mc.player);
 				slotId += 1;
-				CHEST_TIMER.reset();
+				chestTimer.reset();
 			}
 		} else {
 			slotId = 0;
-			CHEST_TIMER.reset();
+			chestTimer.reset();
 		}
 	}
 

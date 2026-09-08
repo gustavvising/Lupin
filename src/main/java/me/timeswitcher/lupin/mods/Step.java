@@ -15,17 +15,17 @@ import net.minecraft.util.math.BlockPos;
 
 public class Step extends Mod {
 
-	private final CheckBox ALLOW_GREATERTHAN_2B = new CheckBox("Allow height > 2 blocks", true);
+	private final CheckBox allowGreaterthan2B = new CheckBox("Allow height > 2 blocks", true);
 
-	public static final Time STEP_TIMER = new Time();
-	private static final Time GROUND_TIMER = new Time();
-	private static final Time SLOWDOWN_TIMER = new Time();
+	public static final Time stepTimer = new Time();
+	private static final Time groundTimer = new Time();
+	private static final Time slowdownTimer = new Time();
 
 	private boolean slowDown = false;
 
 	public Step(String name) {
 		super(name, Category.MOVE, GLFW.GLFW_KEY_UNKNOWN, "Increases the step height.");
-		this.getCheckBoxes().add(ALLOW_GREATERTHAN_2B);
+		this.getCheckBoxes().add(allowGreaterthan2B);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -41,10 +41,10 @@ public class Step extends Mod {
 			if (ModsUtil.canStep()) {
 
 				if (!mc.player.collidedVertically) {
-					GROUND_TIMER.reset();
+					groundTimer.reset();
 				}
 
-				if (STEP_TIMER.isDelayComplete(100f)) {
+				if (stepTimer.isDelayComplete(100f)) {
 
 					double y = PlayerUtil.posY();
 
@@ -56,24 +56,24 @@ public class Step extends Mod {
 
 							delay = 0;
 
-							if (STEP_TIMER.isDelayComplete(delay)) {
+							if (stepTimer.isDelayComplete(delay)) {
 
 								//1 block step
 								PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, mc.player.onGround));
 								PlayerUtil.setPos(PlayerUtil.posX(), y + 1, PlayerUtil.posZ());
 
-								STEP_TIMER.reset();
+								stepTimer.reset();
 							}
 
 						} else {
 
 							if ((mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.4d, PlayerUtil.getHorizontalZ(0.5d))).getBlock() instanceof SlabBlock || (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.4d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && mc.world.getBlockState(new BlockPos(PlayerUtil.posX(), y - 0.1d, PlayerUtil.posZ())).getBlock() instanceof SlabBlock)) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 2, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-								if (GROUND_TIMER.isDelayComplete(150f)) {
+								if (groundTimer.isDelayComplete(150f)) {
 
 									delay = mc.player.isSprinting() ? 75 : 50;
 
-									if (STEP_TIMER.isDelayComplete(delay)) {
+									if (stepTimer.isDelayComplete(delay)) {
 
 										//1.5 block step
 										PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -81,7 +81,7 @@ public class Step extends Mod {
 										PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + 1.16610926093821d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
 										PlayerUtil.setPos(PlayerUtil.posX(), y + 1.5d, PlayerUtil.posZ());
 
-										STEP_TIMER.reset();
+										stepTimer.reset();
 									}
 								}
 
@@ -89,11 +89,11 @@ public class Step extends Mod {
 
 								if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 2.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-									if (GROUND_TIMER.isDelayComplete(500f)) {
+									if (groundTimer.isDelayComplete(500f)) {
 
 										delay = 1000;
 
-										if (STEP_TIMER.isDelayComplete(delay)) {
+										if (stepTimer.isDelayComplete(delay)) {
 
 											//2 block step
 											PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -103,20 +103,20 @@ public class Step extends Mod {
 
 											PlayerUtil.setPos(PlayerUtil.posX(), y + 2, PlayerUtil.posZ());
 
-											STEP_TIMER.reset();
+											stepTimer.reset();
 										}
 									}
 								} else {
 
-									if (ALLOW_GREATERTHAN_2B.isChecked()) {
+									if (allowGreaterthan2B.isChecked()) {
 
 										if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 3.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-											if (GROUND_TIMER.isDelayComplete(1000f)) {
+											if (groundTimer.isDelayComplete(1000f)) {
 
 												delay = 1000;
 
-												if (STEP_TIMER.isDelayComplete(delay)) {
+												if (stepTimer.isDelayComplete(delay)) {
 
 													//3 block step
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -129,20 +129,20 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 3, PlayerUtil.posZ());
 
-													STEP_TIMER.reset();
+													stepTimer.reset();
 
 													ModsUtil.setTimerSpeed(150f);
 													slowDown = true;
-													SLOWDOWN_TIMER.reset();
+													slowdownTimer.reset();
 												}
 											}
 										} else if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 4.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-											if (GROUND_TIMER.isDelayComplete(1000f)) {
+											if (groundTimer.isDelayComplete(1000f)) {
 
 												delay = 1000;
 
-												if (STEP_TIMER.isDelayComplete(delay)) {
+												if (stepTimer.isDelayComplete(delay)) {
 
 													//4 block step
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -159,20 +159,20 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 4, PlayerUtil.posZ());
 
-													STEP_TIMER.reset();
+													stepTimer.reset();
 
 													ModsUtil.setTimerSpeed(150f);
 													slowDown = true;
-													SLOWDOWN_TIMER.reset();
+													slowdownTimer.reset();
 												}
 											}
 										} else if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 5.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-											if (GROUND_TIMER.isDelayComplete(1000f)) {
+											if (groundTimer.isDelayComplete(1000f)) {
 
 												delay = 1000;
 
-												if (STEP_TIMER.isDelayComplete(delay)) {
+												if (stepTimer.isDelayComplete(delay)) {
 
 													//5 block step
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -193,20 +193,20 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 5, PlayerUtil.posZ());
 
-													STEP_TIMER.reset();
+													stepTimer.reset();
 
 													ModsUtil.setTimerSpeed(150f);
 													slowDown = true;
-													SLOWDOWN_TIMER.reset();
+													slowdownTimer.reset();
 												}
 											}
 										} else if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 6.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-											if (GROUND_TIMER.isDelayComplete(1000f)) {
+											if (groundTimer.isDelayComplete(1000f)) {
 
 												delay = 1000;
 
-												if (STEP_TIMER.isDelayComplete(delay)) {
+												if (stepTimer.isDelayComplete(delay)) {
 
 													//6 block step
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -231,20 +231,20 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 6, PlayerUtil.posZ());
 
-													STEP_TIMER.reset();
+													stepTimer.reset();
 
 													ModsUtil.setTimerSpeed(150f);
 													slowDown = true;
-													SLOWDOWN_TIMER.reset();
+													slowdownTimer.reset();
 												}
 											}
 										} else if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 7.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-											if (GROUND_TIMER.isDelayComplete(1000f)) {
+											if (groundTimer.isDelayComplete(1000f)) {
 
 												delay = 1000;
 
-												if (STEP_TIMER.isDelayComplete(delay)) {
+												if (stepTimer.isDelayComplete(delay)) {
 
 													//7 block step
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -273,20 +273,20 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 7, PlayerUtil.posZ());
 
-													STEP_TIMER.reset();
+													stepTimer.reset();
 
 													ModsUtil.setTimerSpeed(150f);
 													slowDown = true;
-													SLOWDOWN_TIMER.reset();
+													slowdownTimer.reset();
 												}
 											}
 										} else if (isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 1.9d, PlayerUtil.getHorizontalZ(0.5d))).getBlock()) && !isSolid(mc.world.getBlockState(new BlockPos(PlayerUtil.getHorizontalX(0.5d), y + 8.9, PlayerUtil.getHorizontalZ(0.5d))).getBlock())) {
 
-											if (GROUND_TIMER.isDelayComplete(1000f)) {
+											if (groundTimer.isDelayComplete(1000f)) {
 
 												delay = 1000;
 
-												if (STEP_TIMER.isDelayComplete(delay)) {
+												if (stepTimer.isDelayComplete(delay)) {
 
 													//8 block step
 													PlayerUtil.sendPacket(new PositionRotationPacket(PlayerUtil.posX(), y + .41999998688698d, PlayerUtil.posZ(), mc.player.rotationYaw, mc.player.rotationPitch, false));
@@ -319,11 +319,11 @@ public class Step extends Mod {
 
 													PlayerUtil.setPos(PlayerUtil.posX(), y + 8, PlayerUtil.posZ());
 
-													STEP_TIMER.reset();
+													stepTimer.reset();
 
 													ModsUtil.setTimerSpeed(150f);
 													slowDown = true;
-													SLOWDOWN_TIMER.reset();
+													slowdownTimer.reset();
 												}
 											}
 										}
@@ -336,7 +336,7 @@ public class Step extends Mod {
 			}
 		} else {
 
-			if (SLOWDOWN_TIMER.isDelayComplete(1000f)) {
+			if (slowdownTimer.isDelayComplete(1000f)) {
 				ModsUtil.resetTimerSpeed();
 				slowDown = false;
 			}

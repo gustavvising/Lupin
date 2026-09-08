@@ -409,7 +409,7 @@ public class RenderUtil {
 			matrixStackIn.push();
 			matrixStackIn.translate(0.0D, f, 0.0D);
 			matrixStackIn.rotate(Lupin.mc.getRenderManager().getCameraOrientation());
-			matrixStackIn.scale(-0.025F - (Nametags.SIZE.getReturnValue() / 100), -0.025F - (Nametags.SIZE.getReturnValue() / 100), 0.025F + (Nametags.SIZE.getReturnValue() / 100));
+			matrixStackIn.scale(-0.025F - (Nametags.size.getReturnValue() / 100), -0.025F - (Nametags.size.getReturnValue() / 100), 0.025F + (Nametags.size.getReturnValue() / 100));
 			Matrix4f matrix4f = matrixStackIn.getLast().getMatrix();
 			float f1 = Minecraft.getInstance().gameSettings.getTextBackgroundOpacity(0.25F);
 			int j = (int)(f1 * 255.0F) << 24;
@@ -430,7 +430,7 @@ public class RenderUtil {
 			matrixStackIn.push();
 			matrixStackIn.translate(0.0D, (double)f, 0.0D);
 			matrixStackIn.rotate(Lupin.mc.getRenderManager().getCameraOrientation());
-			matrixStackIn.scale(-0.025F - (Nametags.SIZE.getReturnValue() / 100), -0.025F - (Nametags.SIZE.getReturnValue() / 100), 0.025F + (Nametags.SIZE.getReturnValue() / 100));
+			matrixStackIn.scale(-0.025F - (Nametags.size.getReturnValue() / 100), -0.025F - (Nametags.size.getReturnValue() / 100), 0.025F + (Nametags.size.getReturnValue() / 100));
 			Matrix4f matrix4f = matrixStackIn.getLast().getMatrix();
 			float f1 = Minecraft.getInstance().gameSettings.getTextBackgroundOpacity(0.25F);
 			int j = (int)(f1 * 255.0F) << 24;

@@ -167,7 +167,7 @@ public class EventListener {
 			}
 			LivingESP.addedGlow = false;
 		}
-		Step.STEP_TIMER.reset();
+		Step.stepTimer.reset();
 	}
 
 	@SubscribeEvent
@@ -177,7 +177,7 @@ public class EventListener {
 
 			if (e.getEntity() != null) {
 
-				if (Lupin.instance.getModHandler().getModByName("Living ESP").isToggled() && Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.GLOW)) {
+				if (Lupin.instance.getModHandler().getModByName("Living ESP").isToggled() && Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.glow)) {
 
 					if (e.getEntity().isLiving()) {
 
@@ -203,7 +203,7 @@ public class EventListener {
 	public void onPreRenderLiving(@SuppressWarnings("rawtypes") RenderLivingEvent.Pre e) {
 		if (Lupin.instance.getModHandler().getModByName("Wallhax").isToggled()) {
 			if (e.getEntity() != null) {
-				if (!(e.getEntity() instanceof ClientPlayerEntity) && (e.getEntity() instanceof PlayerEntity && Wallhax.ONLY_PLAYERS.isChecked() || !Wallhax.ONLY_PLAYERS.isChecked())) {
+				if (!(e.getEntity() instanceof ClientPlayerEntity) && (e.getEntity() instanceof PlayerEntity && Wallhax.onlyPlayers.isChecked() || !Wallhax.onlyPlayers.isChecked())) {
 					GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
 					RenderSystem.enablePolygonOffset();
 					RenderSystem.polygonOffset(1.0F, -1000000);
@@ -216,7 +216,7 @@ public class EventListener {
 	public void onPostRenderLiving(@SuppressWarnings("rawtypes") RenderLivingEvent.Post e) {
 		if (Lupin.instance.getModHandler().getModByName("Wallhax").isToggled()) {
 			if (e.getEntity() != null) {
-				if (!(e.getEntity() instanceof ClientPlayerEntity) && (e.getEntity() instanceof PlayerEntity && Wallhax.ONLY_PLAYERS.isChecked() || !Wallhax.ONLY_PLAYERS.isChecked())) {
+				if (!(e.getEntity() instanceof ClientPlayerEntity) && (e.getEntity() instanceof PlayerEntity && Wallhax.onlyPlayers.isChecked() || !Wallhax.onlyPlayers.isChecked())) {
 					GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
 					RenderSystem.polygonOffset(1.0F, 1000000);
 					RenderSystem.disablePolygonOffset();
@@ -236,7 +236,7 @@ public class EventListener {
 					e.setContent("\u00A7a\u00A7l\u00A7k: " + "\u00A7f" + LupinUser.SPECIALIGN + " \u00A7a\u00A7l\u00A7k:");
 				}
 
-				if (Lupin.instance.getModHandler().getModByName("Item ESP").isToggled() && ItemESP.NAMETAG.isChecked() && e.getEntity() instanceof ItemEntity) {
+				if (Lupin.instance.getModHandler().getModByName("Item ESP").isToggled() && ItemESP.nametag.isChecked() && e.getEntity() instanceof ItemEntity) {
 
 					ItemEntity itemEntity = ((ItemEntity)e.getEntity());
 					String text = itemEntity.getName().getFormattedText() + (itemEntity.getItem().isStackable() ? (" x" + itemEntity.getItem().getCount()) : "");
@@ -249,9 +249,9 @@ public class EventListener {
 
 					if (!GameUtil.isGameNull()) {
 
-						if (e.getEntity() instanceof LivingEntity && (e.getEntity() instanceof PlayerEntity && Nametags.ONLY_PLAYERS.isChecked() || !Nametags.ONLY_PLAYERS.isChecked()) && !(e.getEntity() instanceof ClientPlayerEntity)) {
+						if (e.getEntity() instanceof LivingEntity && (e.getEntity() instanceof PlayerEntity && Nametags.onlyPlayers.isChecked() || !Nametags.onlyPlayers.isChecked()) && !(e.getEntity() instanceof ClientPlayerEntity)) {
 
-							if (Nametags.HEALTH.isChecked()) {
+							if (Nametags.health.isChecked()) {
 
 								LivingEntity le = (LivingEntity) e.getEntity();
 
@@ -394,7 +394,7 @@ public class EventListener {
 
 		if (Lupin.instance.getModHandler().getModByName("High Jump").isToggled() && !Lupin.instance.getModHandler().getModByName("Fly").isToggled()) {
 
-			if (HighJump.GROUND_TIMER.isDelayComplete(100f)) {
+			if (HighJump.groundTimer.isDelayComplete(100f)) {
 
 				if (GameUtil.isKeyDown(Lupin.mc.gameSettings.keyBindJump)) {
 
@@ -1138,7 +1138,7 @@ public class EventListener {
 
 				if (Lupin.instance.getModHandler().getModByName("Living ESP").isToggled()) {
 
-					if (!Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.GLOW)) {
+					if (!Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.glow)) {
 
 						for (Entity entity : Lupin.mc.world.getAllEntities()) {
 
@@ -1162,9 +1162,9 @@ public class EventListener {
 										float f1 = (float) (color >> 8 & 255) / 255.0F;
 										float f2 = (float) (color & 255) / 255.0F;
 
-										if (Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.LINES)) {
+										if (Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.lines)) {
 											RenderUtil.drawESP(entity.getRenderBoundingBox(), (LivingEntity)entity, f, f1, f2, 0.9f);
-										} else if (Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.BOX)) {
+										} else if (Lupin.instance.getModHandler().getModByName("Living ESP").getCurrentMode().equals(LivingESP.box)) {
 											RenderUtil.drawOutlinedBox(entity.getRenderBoundingBox(), f, f1, f2, 0.9f);
 										}
 										RenderSystem.enableTexture();

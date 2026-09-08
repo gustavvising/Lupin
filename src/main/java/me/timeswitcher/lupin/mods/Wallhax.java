@@ -8,11 +8,11 @@ import me.timeswitcher.lupin.mod.Mod;
 
 public class Wallhax extends Mod {
 
-	public static final CheckBox ONLY_PLAYERS = new CheckBox("Only Players", false);
+	public static final CheckBox onlyPlayers = new CheckBox("Only Players", false);
 
 	public Wallhax(String name) {
 		super(name, Category.VISUAL, GLFW.GLFW_KEY_UNKNOWN, "Renders entities through blocks. (buggy)");
-		this.getCheckBoxes().add(ONLY_PLAYERS);
+		this.getCheckBoxes().add(onlyPlayers);
 	}
 
 }

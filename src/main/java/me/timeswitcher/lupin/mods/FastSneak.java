@@ -11,16 +11,16 @@ import me.timeswitcher.lupin.utility.Time;
 
 public class FastSneak extends Mod {
 
-	private final Time SPEED_TIMER = new Time();
+	private final Time speedTimer = new Time();
 
-	private final Mode SLOWER = new Mode("Slower");
-	private final Mode FASTER = new Mode("Faster");
+	private final Mode slower = new Mode("Slower");
+	private final Mode faster = new Mode("Faster");
 
 	public FastSneak(String name) {
 		super(name, Category.MOVE, GLFW.GLFW_KEY_UNKNOWN, "Decreases the sneak movement slowdown.");
-		this.setCurrentMode(SLOWER);
-		this.getModes().add(SLOWER);
-		this.getModes().add(FASTER);
+		this.setCurrentMode(slower);
+		this.getModes().add(slower);
+		this.getModes().add(faster);
 	}
 
 	@Override
@@ -32,16 +32,16 @@ public class FastSneak extends Mod {
 			}
 			double speedAdd = 0;
 
-			if (SPEED_TIMER.isDelayComplete(200)) {
+			if (speedTimer.isDelayComplete(200)) {
 				if ((mc.gameSettings.keyBindForward.isKeyDown() || (mc.gameSettings.keyBindForward.isKeyDown() && (mc.gameSettings.keyBindLeft.isKeyDown()
 						|| mc.gameSettings.keyBindRight.isKeyDown()))) && !mc.gameSettings.keyBindBack.isKeyDown()) {
-					if (this.getCurrentMode().equals(SLOWER)) {
+					if (this.getCurrentMode().equals(slower)) {
 						speedAdd = 0.11d;
 					} else {
 						speedAdd = 0.25d;
 					}
 				} else {
-					if (this.getCurrentMode().equals(SLOWER)) {
+					if (this.getCurrentMode().equals(slower)) {
 						speedAdd = 0.11d;
 					} else {
 						speedAdd = 0.18d;
@@ -51,7 +51,7 @@ public class FastSneak extends Mod {
 			double speed = (PlayerUtil.getMoveSpeed() / 0.05F) + speedAdd;
 			PlayerUtil.setMoveSpeed(speed);
 		} else {
-			SPEED_TIMER.reset();
+			speedTimer.reset();
 		}
 	}
 

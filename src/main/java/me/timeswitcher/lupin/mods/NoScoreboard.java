@@ -26,7 +26,7 @@ public class NoScoreboard extends Mod {
 					Lupin.mc.world.getScoreboard().setObjectiveInDisplaySlot(1, lastScoreObjective);
 					lastScoreObjective = null;
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 
 			}
 		}
