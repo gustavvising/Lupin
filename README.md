@@ -7,6 +7,19 @@ visualization modifications that renders entities health and twerk that makes yo
 While working on it, I researched anticheat systems, specifically targeting Spartan anticheat, and worked with the developer to identify bypasses
 and help mitigate them.
 
+## Development
+
+### Requirements
+Java 8
+
+### Clone the repository
+git clone https://github.com/gustavvising/Lupin.git
+cd Lupin
+
+### Build
+./gradlew build
+Output:\build\libs\Lupin.jar
+
 ### Screenshots
 
 ![Visuals](images/visuals.png)
