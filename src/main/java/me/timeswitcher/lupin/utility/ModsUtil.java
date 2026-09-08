@@ -33,7 +33,7 @@ public class ModsUtil {
 	}
 
 	public static boolean canFastSneak() {
-		return Lupin.mc.player.isCrouching() && PlayerUtil.playerReady() && Lupin.mc.currentScreen == null && !PlayerUtil.inLiquid() && !PlayerUtil.inWeb() && !PlayerUtil.climb() && !PlayerUtil.isRiding();
+		return Lupin.mc.player.isCrouching() && PlayerUtil.playerReady() && !PlayerUtil.inLiquid() && !PlayerUtil.inWeb() && !PlayerUtil.climb() && !PlayerUtil.isRiding();
 	}
 
 	public static boolean canStep() {
