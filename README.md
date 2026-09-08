@@ -14,11 +14,13 @@ Java 8
 
 ### Clone the repository
 git clone https://github.com/gustavvising/Lupin.git
+
 cd Lupin
 
 ### Build
 ./gradlew build
-Output:\build\libs\Lupin.jar
+
+Output: \build\libs\Lupin.jar
 
 ### Screenshots
 
