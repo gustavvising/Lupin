@@ -9,7 +9,7 @@ import me.timeswitcher.lupin.utility.PlayerUtil;
 public class Strafe extends Mod {
 
     public Strafe(String name) {
-        super(name, Category.MOVE, GLFW.GLFW_KEY_UNKNOWN, "Move around freely in air.");
+        super(name, Category.MOVE, GLFW.GLFW_KEY_UNKNOWN, "Move freely in the air.");
     }
 
     @Override
@@ -51,4 +51,5 @@ public class Strafe extends Mod {
 
         return Math.toRadians(rotationYaw);
     }
+
 }
