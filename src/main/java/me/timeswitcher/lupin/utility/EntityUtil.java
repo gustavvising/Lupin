@@ -40,18 +40,34 @@ public class EntityUtil {
 	}
 
 	public static LivingEntity getEntityInRange(double range) {
+		if (Lupin.mc.world == null || Lupin.mc.player == null) {
+			return null;
+		}
+
 		double distance = range;
 		LivingEntity tempEntity = null;
 
 		for (Entity entity : Lupin.mc.world.getAllEntities()) {
-			if (entity != Lupin.mc.player && isEntityValid(entity)) {
-				double curDistance = Lupin.mc.player.getDistance(entity);
-				if (curDistance <= distance) {
-					distance = curDistance;
-					tempEntity = (LivingEntity) entity;
-				}
+			if (!(entity instanceof LivingEntity)) {
+				continue;
+			}
+
+			if (entity == Lupin.mc.player) {
+				continue;
+			}
+
+			if (!isEntityValid(entity)) {
+				continue;
+			}
+
+			double curDistance = Lupin.mc.player.getDistance(entity);
+
+			if (curDistance <= distance) {
+				distance = curDistance;
+				tempEntity = (LivingEntity) entity;
 			}
 		}
+
 		return tempEntity;
 	}
 
@@ -63,7 +79,23 @@ public class EntityUtil {
 	}
 
 	public static boolean isEntityValid(Entity entity) {
-		return entity.isLiving() && !shouldNotTarget((LivingEntity) entity) && entity.canBeAttackedWithItem() && entity.ticksExisted > 20 && entity != Lupin.mc.player && Lupin.mc.player.canEntityBeSeen(entity) && !entity.isInvisible() && entity.isAlive();
+		if (entity == null || Lupin.mc.player == null) {
+			return false;
+		}
+
+		if (!(entity instanceof LivingEntity)) {
+			return false;
+		}
+
+		LivingEntity livingEntity = (LivingEntity) entity;
+
+		return entity != Lupin.mc.player
+				&& entity.isLiving()
+				&& entity.isAlive()
+				&& entity.canBeAttackedWithItem()
+				&& entity.ticksExisted > 20
+				&& !shouldNotTarget(livingEntity)
+				&& Lupin.mc.player.canEntityBeSeen(entity);
 	}
 
 	public static boolean isEntityValidESP(Entity entity) {
