@@ -3,6 +3,7 @@
 Lupin is a Minecraft Forge mod that brings utilities that normal Minecraft does not allow. With a range of modules, such as speed that makes you much faster,
 visualization modifications that renders entities health and twerk that makes you shake.
 
+<br>
 ## Installation
 
 1. Install **Minecraft 1.15.2** with **Forge**.
@@ -10,6 +11,7 @@ visualization modifications that renders entities health and twerk that makes yo
 3. Place the `.jar` file into your Minecraft `mods` folder.
 4. Launch Minecraft using the **Forge 1.15.2** profile.
 
+<br>
 ## Development
 
 ### Requirements
@@ -25,12 +27,13 @@ cd Lupin
 
 Output is saved to: \build\libs\Lupin.jar
 
+<br>
 ## Screenshots
 
 ![Visuals](images/visuals.png)
-
+<br>
 ![Mod gui](images/mod_gui.png)
-
+<br>
 ![Mod settings](images/mod_settings.png)
-
+<br>
 ![Main menu](images/main_menu.png)
