@@ -45,4 +45,8 @@ Output is saved to: \build\libs\Lupin.jar
 
 <br>
 
+![Mod settings](images/commands.png)
+
+<br>
+
 ![Main menu](images/main_menu.png)
