@@ -13,7 +13,7 @@ public class Lupin {
 
 	public static final String NAME = "Lupin";
 	public static final String PREFIX = "\u00A7f\u00A7lLupin\u00A78\u00A7k:\u00A7r\u00A77 ";
-	public static final String VERSION = "1.1";
+	public static final String VERSION = "1.2";
 	
 	public static Lupin instance;
 
