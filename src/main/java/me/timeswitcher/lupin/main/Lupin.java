@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 public class Lupin {
 
 	public static final String NAME = "Lupin";
-	public static final String PREFIX = "\u00A7b\u00A7lL\u00A7d\u00A7lu\u00A7b\u00A7l\u00A7b\u00A7lp\u00A7d\u00A7li\u00A7b\u00A7ln\u00A78\u00A7k!\u00A7r\u00A77 ";
+	public static final String PREFIX = "\u00A7f\u00A7lLupin\u00A78\u00A7k:\u00A7r\u00A77 ";
 	public static final String VERSION = "1.1";
 	
 	public static Lupin instance;
