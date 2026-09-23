@@ -2,7 +2,7 @@ modLoader="javafml"
 loaderVersion="[31,)"
 [[mods]]
 modId="lupin"
-version="1.2"
+version="${file.jarVersion}"
 displayName="Lupin"
 credits=""
 description=""
