@@ -1,35 +1,41 @@
 # Lupin
 
-Lupin is a Minecraft Forge mod that brings utilities that normal Minecraft does not allow. With a range of modules, such as speed that makes you much faster,
-visualization modifications that renders entities health and twerk that makes you shake.
-
-<br>
+Lupin is a Minecraft Forge mod that adds utilities and features that are
+not available in vanilla Minecraft. It includes modules such as Speed,
+which increases movement speed, Visuals, which displays entity health,
+and Twerk, which makes the player shake.
 
 ## Installation
 
 1. Install **Minecraft 1.15.2** with **Forge**.
-2. Download the latest mod `.jar` from the [Releases](../../releases) page.
-3. Place the `.jar` file into your Minecraft `mods` folder.
+2. Download the latest `.jar` from the [Releases](../../releases) page.
+3. Place the `.jar` file in your Minecraft `mods` folder.
 4. Launch Minecraft using the **Forge 1.15.2** profile.
-
-<br>
 
 ## Development
 
 ### Requirements
-Java 8
+
+- Java 8
 
 ### Clone the repository
-git clone https://github.com/gustavvising/Lupin.git
 
+```bash
+git clone https://github.com/gustavvising/Lupin.git
 cd Lupin
+```
 
 ### Build
+
+```bash
 ./gradlew build
+```
 
-Output is saved to: \build\libs\Lupin.jar
+Output:
 
-<br>
+```text
+build/libs/Lupin.jar
+```
 
 ## Screenshots
 
@@ -37,16 +43,16 @@ Output is saved to: \build\libs\Lupin.jar
 
 <br>
 
-![Mod gui](images/mod_gui.png)
+![Mod GUI](images/mod_gui.png)
 
 <br>
 
-![Mod settings](images/mod_settings.png)
+![Mod Settings](images/mod_settings.png)
 
 <br>
 
-![Mod settings](images/commands.png)
+![Commands](images/commands.png)
 
 <br>
 
-![Main menu](images/main_menu.png)
+![Main Menu](images/main_menu.png)
