@@ -4,95 +4,110 @@ import org.lwjgl.glfw.GLFW;
 
 import me.timeswitcher.lupin.mod.Category;
 import me.timeswitcher.lupin.mod.Mod;
-import me.timeswitcher.lupin.mod.Mode;
-import me.timeswitcher.lupin.utility.ModsUtil;
 import me.timeswitcher.lupin.utility.PlayerUtil;
-import me.timeswitcher.lupin.utility.Time;
-import net.minecraft.block.Blocks;
 import net.minecraft.network.play.client.CPlayerPacket;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class Fly extends Mod {
 
-	private final Mode packet = new Mode("Packet");
-	private final Mode airJump = new Mode("Air Jump");
+    private final double speed = 0.5D;
 
-	private BlockPos blockPos;
-	private final Time flyTimer = new Time();
+    public Fly(String name) {
+        super(name, Category.MOVE, GLFW.GLFW_KEY_G, "Allows the player to fly.");
+    }
 
-	public Fly(String name) {
-		super(name, Category.MOVE, GLFW.GLFW_KEY_G, "Makes you fly.");
-		this.setCurrentMode(packet);
-		this.getModes().add(packet);
-		this.getModes().add(airJump);
-	}
+    @Override
+    public void onEnable() {
+        if (mc.player == null) {
+            return;
+        }
 
-	private void packetFly() {
+        mc.player.setMotion(0, 0, 0);
+    }
 
-		ModsUtil.setTimerSpeed(500);
+    @Override
+    public void onDisable() {
+        if (mc.player == null) {
+            return;
+        }
 
-		if (flyTimer.isDelayComplete(50)) {
+        mc.player.setMotion(
+                mc.player.getMotion().x,
+                0,
+                mc.player.getMotion().z
+        );
+    }
 
-			PlayerUtil.setMotion(0, 0, 0);
+    @Override
+public void onUpdate() {
+    if (mc.player == null) {
+        return;
+    }
 
-			sendPacketFlyFast(PlayerUtil.motionX(), 0.00000001d, PlayerUtil.motionZ());
+    double forward = 0.0D;
+    double strafe = 0.0D;
 
-			flyTimer.reset();
-		}
-	}
+    if (mc.gameSettings.keyBindForward.isKeyDown()) {
+        forward++;
+    }
 
-	private void sendPacketFlyFast(double x, double y, double z) {
-		PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(PlayerUtil.posX() + x, PlayerUtil.posY() + y, PlayerUtil.posZ() + z, true));
-		PlayerUtil.sendPacket(new CPlayerPacket.PositionPacket(PlayerUtil.posX() + x, PlayerUtil.posY() + 112, PlayerUtil.posZ() + z, true));
-	}
+    if (mc.gameSettings.keyBindBack.isKeyDown()) {
+        forward--;
+    }
 
-	private void airJump() {
+    if (mc.gameSettings.keyBindLeft.isKeyDown()) {
+        strafe++;
+    }
 
-		if (blockPos != null) {
+    if (mc.gameSettings.keyBindRight.isKeyDown()) {
+        strafe--;
+    }
 
-			if (World.isValid(blockPos) && mc.world.getBlockState(blockPos).getBlock() ==
-					Blocks.BARRIER) {
+    double motionX = 0.0D;
+    double motionZ = 0.0D;
 
-				mc.world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 2);
+    if (forward != 0.0D || strafe != 0.0D) {
+        double length = Math.sqrt(
+                forward * forward + strafe * strafe
+        );
 
-				blockPos = null; } } if (ModsUtil.canFly() && blockPos == null) {
+        forward /= length;
+        strafe /= length;
 
-			BlockPos blockPos = new BlockPos(PlayerUtil.posX(), PlayerUtil.posY() - 1,
-					PlayerUtil.posZ());
+        double yaw = Math.toRadians(mc.player.rotationYaw);
 
-			if (PlayerUtil.isMoveKeys() && mc.gameSettings.keyBindJump.isKeyDown() &&
-					mc.world.getBlockState(blockPos).getBlock() == Blocks.AIR) {
+        motionX = (
+                -Math.sin(yaw) * forward
+                + Math.cos(yaw) * strafe
+        ) * speed;
 
-				mc.world.setBlockState(blockPos, Blocks.BARRIER.getDefaultState(), 2);
+        motionZ = (
+                Math.cos(yaw) * forward
+                + Math.sin(yaw) * strafe
+        ) * speed;
+    }
 
-				this.blockPos = blockPos; } }
+    double motionY = 0.0D;
 
-	}
+    if (mc.gameSettings.keyBindJump.isKeyDown()) {
+        motionY = speed;
+    } else if (mc.gameSettings.keyBindSneak.isKeyDown()) {
+        motionY = -speed;
+    }
 
-	@Override
-	public void onEnable() {
-		blockPos = null;
-	}
+    mc.player.setMotion(motionX, motionY, motionZ);
 
-	@Override
-	public void onDisable() {
-		if (!mc.player.onGround) {
-			PlayerUtil.setMotion(PlayerUtil.motionX(), -0.07544406518948656d, PlayerUtil.motionZ());
-		}
-		ModsUtil.resetTimerSpeed();
-	}
+    sendPositionPacket();
+}
 
-	@Override
-	public void onUpdate() {
 
-		if (this.getCurrentMode().equals(packet)) {
-
-			packetFly();
-
-		} else if (this.getCurrentMode().equals(airJump)) {
-
-			airJump();
-		}
-		}
-	}
+    private void sendPositionPacket() {
+        PlayerUtil.sendPacket(
+                new CPlayerPacket.PositionPacket(
+                        mc.player.getPosX(),
+                        mc.player.getPosY(),
+                        mc.player.getPosZ(),
+                        false
+                )
+        );
+    }
+}
